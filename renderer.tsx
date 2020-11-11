@@ -2,6 +2,11 @@ import {Component, LensRendererExtension} from "@k8slens/extensions";
 import React from "react"
 import {StarboardFeature} from "./src/starboard-feature"
 import {VulnerabilityReportPage} from "./src/components/vulnerability-reports-list";
+import {VulnerabilityReport} from "./src/vulnerability-report";
+import {
+    VulnerabilityReportDetails,
+    VulnerabilityReportDetailsProps
+} from "./src/components/vulnerability-report-details";
 
 export function CertificateIcon(props: Component.IconProps) {
     return <Component.Icon {...props} material="security" tooltip="VulnerabilityReports"/>
@@ -25,6 +30,7 @@ export default class StarboardExtension extends LensRendererExtension {
             feature: new StarboardFeature()
         }
     ]
+
     clusterPages = [
         {
             path: "/vulnerabilityreports-page",
@@ -35,4 +41,12 @@ export default class StarboardExtension extends LensRendererExtension {
             }
         }
     ]
+
+    kubeObjectDetailItems = [{
+        kind: VulnerabilityReport.kind,
+        apiVersions: ["aquasecurity.github.io/v1alpha1"],
+        components: {
+            Details: (props: VulnerabilityReportDetailsProps) => <VulnerabilityReportDetails {...props} />
+        }
+    }]
 }
