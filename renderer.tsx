@@ -1,7 +1,11 @@
-import {LensRendererExtension} from "@k8slens/extensions";
-import {ExampleIcon, StarboardPage} from "./page"
+import {Component, LensRendererExtension} from "@k8slens/extensions";
 import React from "react"
 import {StarboardFeature} from "./src/starboard-feature"
+import {VulnerabilityReportPage} from "./src/components/vulnerability-reports-list";
+
+export function CertificateIcon(props: Component.IconProps) {
+    return <Component.Icon {...props} material="security" tooltip="VulnerabilityReports"/>
+}
 
 export default class StarboardExtension extends LensRendererExtension {
     clusterFeatures = [
@@ -23,11 +27,11 @@ export default class StarboardExtension extends LensRendererExtension {
     ]
     clusterPages = [
         {
-            path: "/extension-starboard",
-            title: "Starboard",
+            path: "/vulnerabilityreports-page",
+            title: "Vulnerability Reports",
             components: {
-                Page: () => <StarboardPage extension={this}/>,
-                MenuIcon: ExampleIcon,
+                Page: () => <VulnerabilityReportPage extension={this}/>,
+                MenuIcon: CertificateIcon,
             }
         }
     ]
