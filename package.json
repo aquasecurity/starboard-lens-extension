@@ -12,11 +12,12 @@
     "react-open-doodles": "^1.0.5"
   },
   "devDependencies": {
-    "@k8slens/extensions": "^4.0.0-alpha.4",
+    "@k8slens/extensions": "4.0.0-alpha.3",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
     "@types/react": "^16.9.35",
     "@types/node": "^12.0.0",
+    "mobx": "^5.15.5",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11"
   }
