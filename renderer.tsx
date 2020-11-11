@@ -7,6 +7,9 @@ import {
     VulnerabilityReportDetails,
     VulnerabilityReportDetailsProps
 } from "./src/components/vulnerability-report-details";
+import {ConfigAuditReportPage} from "./src/components/configaudit-reports-list";
+import {ConfigAuditReport} from "./src/configaudit-report";
+import {ConfigAuditReportDetails, ConfigAuditReportDetailsProps} from "./src/components/configaudit-report-details";
 
 export function CertificateIcon(props: Component.IconProps) {
     return <Component.Icon {...props} material="security" tooltip="VulnerabilityReports"/>
@@ -39,14 +42,31 @@ export default class StarboardExtension extends LensRendererExtension {
                 Page: () => <VulnerabilityReportPage extension={this}/>,
                 MenuIcon: CertificateIcon,
             }
+        },
+        {
+            path: "/configauditreports-page",
+            title: "ConfigAudit Reports",
+            components: {
+                Page: () => <ConfigAuditReportPage extension={this}/>,
+                MenuIcon: CertificateIcon,
+            }
         }
     ]
 
-    kubeObjectDetailItems = [{
-        kind: VulnerabilityReport.kind,
-        apiVersions: ["aquasecurity.github.io/v1alpha1"],
-        components: {
-            Details: (props: VulnerabilityReportDetailsProps) => <VulnerabilityReportDetails {...props} />
+    kubeObjectDetailItems = [
+        {
+            kind: VulnerabilityReport.kind,
+            apiVersions: ["aquasecurity.github.io/v1alpha1"],
+            components: {
+                Details: (props: VulnerabilityReportDetailsProps) => <VulnerabilityReportDetails {...props} />
+            }
+        },
+        {
+            kind: ConfigAuditReport.kind,
+            apiVersions: ["aquasecurity.github.io/v1alpha1"],
+            components: {
+                Details: (props: ConfigAuditReportDetailsProps) => <ConfigAuditReportDetails {...props} />
+            }
         }
-    }]
+    ]
 }
