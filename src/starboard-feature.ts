@@ -26,9 +26,7 @@ export class StarboardFeature extends ClusterFeature.Feature {
             }
 
         } catch (e) {
-            if (e?.error?.code === 404) {
-                this.status.installed = false
-            }
+            this.status.installed = false
         }
         return this.status
     }
@@ -38,7 +36,8 @@ export class StarboardFeature extends ClusterFeature.Feature {
         const namespaceApi = K8sApi.forCluster(cluster, K8sApi.Namespace)
         const clusterRoleBindingApi = K8sApi.forCluster(cluster, K8sApi.ClusterRoleBinding)
         const clusterRoleApi = K8sApi.forCluster(cluster, K8sApi.ClusterRole)
-        // TODO Delete Starboard CRDS
+
+        // TODO Delete Starboard CRDs?
         // - vulnerabilityreports.aquasec.github.io
         // - configauditreports.aquasec.github.io
         // - ciskubebenchreports.aquasec.github.io

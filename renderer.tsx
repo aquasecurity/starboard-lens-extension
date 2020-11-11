@@ -1,7 +1,7 @@
 import {LensRendererExtension} from "@k8slens/extensions";
 import {ExampleIcon, StarboardPage} from "./page"
 import React from "react"
-import {StarboardFeature} from "./starboard-feature"
+import {StarboardFeature} from "./src/starboard-feature"
 
 export default class StarboardExtension extends LensRendererExtension {
     clusterFeatures = [
