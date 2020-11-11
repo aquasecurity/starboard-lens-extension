@@ -14,4 +14,4 @@ export const configAuditReportsApi = new ConfigAuditReportsApi({
 
 export const configAuditReportsStore = new ConfigAuditReportsStore();
 
-K8sApi.apiManager.registerStore(configAuditReportsApi, configAuditReportsStore);
+K8sApi.apiManager.registerStore(configAuditReportsStore, [configAuditReportsApi]);
