@@ -3,6 +3,7 @@
 > This is a [Lens][lens] extension for [Starboard][starboard] which provides visibility into
 > vulnerability assessment reports for Kubernetes workloads stored as [custom security resources][starboard-crds].
 
+[![GitHub Build Actions][build-action-img]][actions]
 [![License][license-img]][license]
 
 ## Installation
@@ -37,5 +38,7 @@ navigation menu.
 
 [lens-installation]: https://github.com/lensapp/lens#installation
 [lens-releases]: https://github.com/lensapp/lens/releases
+[build-action-img]: https://github.com/aquasecurity/starboard-lens-extension/workflows/build/badge.svg
+[actions]: https://github.com/aquasecurity/starboard-lens-extension/actions
 [license]: https://github.com/aquasecurity/starboard-lens-extension/blob/master/LICENSE
 [license-img]: https://img.shields.io/github/license/aquasecurity/starboard-lens-extension
