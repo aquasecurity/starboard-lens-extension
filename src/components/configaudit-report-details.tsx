@@ -12,8 +12,12 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
         if (!report) return null;
         return (
             <div className="ConfigAuditReport">
-                <Component.DrawerItem name="Created">
-                    {report.getAge(true, false)} ago ({report.metadata.creationTimestamp})
+                <Component.KubeObjectMeta object={report} hideFields={["uid", "resourceVersion", "selfLink"]}/>
+                <Component.DrawerItem name="Danger">
+                    {report.report.summary.dangerCount}
+                </Component.DrawerItem>
+                <Component.DrawerItem name="Warning">
+                    {report.report.summary.warningCount}
                 </Component.DrawerItem>
             </div>
         )
