@@ -27,10 +27,16 @@ $ cd ~/.k8slens/extensions/starboard-lens-extensions
 $ npm install && npm run build
 ```
 
-Open Lens application and select a cluster. If everything went well you should see the "Starboard" item in the main
-navigation menu.
+Open Lens application and select a cluster. If everything went well you should see the following items in the main
+navigation menu:
 
-![](docs/screenshot.png)
+- VulnerabilityReports
+
+  ![](./docs/images/lens_vulnerability_report.png)
+- ConfigAuditReports
+
+  ![](./docs/images/lens_configaudit_report.png)
+- CISKubeBenchReports
 
 [lens]: https://github.com/lensapp/lens
 [starboard]: https://github.com/aquasecurity/starboard
