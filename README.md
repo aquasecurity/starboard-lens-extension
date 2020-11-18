@@ -10,7 +10,7 @@
 
 ### Prerequisites
 
-* Lens >= 4.0.0-alpha.2 should first be installed. Download a pre-built package from the [releases][lens-releases] page.
+* Lens >= 4.0.0-beta.3 should first be installed. Download a pre-built package from the [releases][lens-releases] page.
   Alternatively, on macOS installing the latest version is as simple as `brew cask install lens`. For installation
   instructions on other operating systems and packages managers, see [Lens Installation][lens-installation].
 
