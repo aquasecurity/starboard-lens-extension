@@ -35,7 +35,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: LensRend
                     {title: "Namespace", className: "namespace", sortBy: sortBy.namespace},
                     {title: "Scanner", className: "scanner"},
                     {title: "Danger", className: "danger", sortBy: sortBy.danger},
-                    {title: "Warning", className: "warning", sortBy: sortBy.warning},
+                    {title: "Warning", className: "xwarning", sortBy: sortBy.warning},
                 ]}
                 renderTableContents={(report: ConfigAuditReport) => [
                     report.getName(),
