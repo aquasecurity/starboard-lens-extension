@@ -10,9 +10,10 @@ import {
 import {ConfigAuditReportPage} from "./src/components/configaudit-reports-list";
 import {ConfigAuditReport} from "./src/configaudit-report";
 import {ConfigAuditReportDetails, ConfigAuditReportDetailsProps} from "./src/components/configaudit-report-details";
+import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-list";
 
 export function CertificateIcon(props: Component.IconProps) {
-    return <Component.Icon {...props} material="security" tooltip="VulnerabilityReports"/>
+    return <Component.Icon {...props} material="security"/>
 }
 
 export default class StarboardExtension extends LensRendererExtension {
@@ -47,6 +48,12 @@ export default class StarboardExtension extends LensRendererExtension {
             components: {
                 Page: () => <ConfigAuditReportPage extension={this}/>,
             }
+        },
+        {
+            id: "ciskubebenchreports",
+            components: {
+                Page: () => <CISKubeBenchReportsList extension={this}/>
+            }
         }
     ]
 
@@ -61,6 +68,13 @@ export default class StarboardExtension extends LensRendererExtension {
         {
             target: {pageId: "configauditreports"},
             title: "ConfigAuditReports",
+            components: {
+                Icon: CertificateIcon
+            }
+        },
+        {
+            target: {pageId: "ciskubebenchreports"},
+            title: "CISKubeBenchReports",
             components: {
                 Icon: CertificateIcon
             }
