@@ -11,6 +11,8 @@ import {ConfigAuditReportPage} from "./src/components/configaudit-reports-list";
 import {ConfigAuditReport} from "./src/configaudit-report";
 import {ConfigAuditReportDetails, ConfigAuditReportDetailsProps} from "./src/components/configaudit-report-details";
 import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-list";
+import {CISKubeBenchReport} from "./src/ciskubebench-report";
+import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
 
 export function CertificateIcon(props: Component.IconProps) {
     return <Component.Icon {...props} material="security"/>
@@ -94,6 +96,13 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["aquasecurity.github.io/v1alpha1"],
             components: {
                 Details: (props: ConfigAuditReportDetailsProps) => <ConfigAuditReportDetails {...props} />
+            }
+        },
+        {
+            kind: CISKubeBenchReport.kind,
+            apiVersions: ["aquasecurity.github.io/v1alpha1"],
+            components: {
+                Details: (props: CISKubeBenchReportDetailsProps) => <CISKubeBenchReportDetails {...props} />
             }
         }
     ]
