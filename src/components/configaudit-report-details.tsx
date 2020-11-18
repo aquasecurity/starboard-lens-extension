@@ -1,6 +1,7 @@
 import {Component} from "@k8slens/extensions";
 import React from "react";
 import {ConfigAuditReport} from "../configaudit-report";
+import {ConfigAuditChecksList} from "./configaudit-checks-list";
 
 export interface ConfigAuditReportDetailsProps extends Component.KubeObjectDetailsProps<ConfigAuditReport> {
 }
@@ -19,6 +20,10 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
                 <Component.DrawerItem name="Warning">
                     {report.report.summary.warningCount}
                 </Component.DrawerItem>
+
+                <ConfigAuditChecksList
+                    podChecks={report.report.podChecks}
+                    containerChecks={report.report.containerChecks}/>
             </div>
         )
     }
