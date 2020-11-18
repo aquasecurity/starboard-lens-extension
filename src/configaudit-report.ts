@@ -1,5 +1,13 @@
 import {K8sApi} from "@k8slens/extensions";
 
+export class Check {
+    checkID: string;
+    message: string;
+    success: boolean;
+    severity: string;
+    category: string
+}
+
 export class ConfigAuditReport extends K8sApi.KubeObject {
     static kind = "ConfigAuditReport"
     static namespaced = true
@@ -23,7 +31,7 @@ export class ConfigAuditReport extends K8sApi.KubeObject {
     }
 
     report: {
-         scanner: {
+        scanner: {
             name: string;
             vendor: string;
             version: string;
@@ -31,6 +39,10 @@ export class ConfigAuditReport extends K8sApi.KubeObject {
         summary: {
             dangerCount: number;
             warningCount: number;
+        }
+        podChecks: Check[]
+        containerChecks: {
+            [key: string]: Check[]
         }
     }
 }
