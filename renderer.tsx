@@ -16,6 +16,7 @@ export function CertificateIcon(props: Component.IconProps) {
 }
 
 export default class StarboardExtension extends LensRendererExtension {
+
     clusterFeatures = [
         {
             title: "Starboard",
@@ -36,19 +37,32 @@ export default class StarboardExtension extends LensRendererExtension {
 
     clusterPages = [
         {
-            path: "/vulnerabilityreports-page",
-            title: "Vulnerability Reports",
+            id: "vulnerabilityreports",
             components: {
                 Page: () => <VulnerabilityReportPage extension={this}/>,
-                MenuIcon: CertificateIcon,
             }
         },
         {
-            path: "/configauditreports-page",
-            title: "ConfigAudit Reports",
+            id: "configauditreports",
             components: {
                 Page: () => <ConfigAuditReportPage extension={this}/>,
-                MenuIcon: CertificateIcon,
+            }
+        }
+    ]
+
+    clusterPageMenus = [
+        {
+            target: {pageId: "vulnerabilityreports"},
+            title: "VulnerabilityReports",
+            components: {
+                Icon: CertificateIcon
+            }
+        },
+        {
+            target: {pageId: "configauditreports"},
+            title: "ConfigAuditReports",
+            components: {
+                Icon: CertificateIcon
             }
         }
     ]
@@ -69,4 +83,5 @@ export default class StarboardExtension extends LensRendererExtension {
             }
         }
     ]
+
 }
