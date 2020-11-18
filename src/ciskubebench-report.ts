@@ -1,5 +1,25 @@
 import {K8sApi} from "@k8slens/extensions";
 
+export class CISSection {
+    id: string;
+    version: string;
+    text: string;
+    tests: CISTest[];
+}
+
+export class CISTest {
+    section: string;
+    desc: string;
+    results: CISResult[];
+}
+
+export class CISResult {
+    test_number: string;
+    test_desc: string;
+    status: string;
+    scored: boolean;
+}
+
 export class CISKubeBenchReport extends K8sApi.KubeObject {
 
     static kind = "CISKubeBenchReport"
@@ -35,6 +55,7 @@ export class CISKubeBenchReport extends K8sApi.KubeObject {
             passCount: number;
             warnCount: number;
         },
+        sections: CISSection[];
     }
 
 }
