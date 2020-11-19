@@ -44,7 +44,7 @@ navigation menu:
 
 [lens-installation]: https://github.com/lensapp/lens#installation
 [lens-releases]: https://github.com/lensapp/lens/releases
-[build-action-img]: https://github.com/aquasecurity/starboard-lens-extension/workflows/build/badge.svg
+[build-action-img]: https://github.com/aquasecurity/starboard-lens-extension/workflows/Build/badge.svg
 [actions]: https://github.com/aquasecurity/starboard-lens-extension/actions
 [license]: https://github.com/aquasecurity/starboard-lens-extension/blob/master/LICENSE
 [license-img]: https://img.shields.io/github/license/aquasecurity/starboard-lens-extension
