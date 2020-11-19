@@ -6,6 +6,8 @@
 [![GitHub Build Actions][build-action-img]][actions]
 [![License][license-img]][license]
 
+[![Screenshot](docs/images/starboard-lens-extension-video.png)](https://youtu.be/X-bhVwmp2l4)
+
 ## Installation
 
 ### Prerequisites
