@@ -61,6 +61,14 @@ export default class StarboardExtension extends LensRendererExtension {
 
     clusterPageMenus = [
         {
+            id: "starboard",
+            title: "Starboard",
+            components: {
+                Icon: CertificateIcon
+            }
+        },
+        {
+            parentId: "starboard",
             target: {pageId: "vulnerabilityreports"},
             title: "VulnerabilityReports",
             components: {
@@ -68,6 +76,7 @@ export default class StarboardExtension extends LensRendererExtension {
             }
         },
         {
+            parentId: "starboard",
             target: {pageId: "configauditreports"},
             title: "ConfigAuditReports",
             components: {
@@ -75,6 +84,7 @@ export default class StarboardExtension extends LensRendererExtension {
             }
         },
         {
+            parentId: "starboard",
             target: {pageId: "ciskubebenchreports"},
             title: "CISKubeBenchReports",
             components: {
