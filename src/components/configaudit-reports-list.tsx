@@ -1,6 +1,6 @@
 import {Component, LensRendererExtension} from "@k8slens/extensions";
 import React from "react";
-import {configAuditReportsStore} from "../configaudit-report-store";
+import {configAuditReportsStore} from "../configaudit-reports-store";
 import {ConfigAuditReport} from "../configaudit-report";
 
 enum sortBy {
