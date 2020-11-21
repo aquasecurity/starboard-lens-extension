@@ -13,6 +13,7 @@ import {ConfigAuditReportDetails, ConfigAuditReportDetailsProps} from "./src/com
 import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-list";
 import {CISKubeBenchReport} from "./src/ciskubebench-report";
 import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
+import {WorkloadVulnerabilities} from "./src/components/workload-vulnerabilities";
 
 export function CertificateIcon(props: Component.IconProps) {
     return <Component.Icon {...props} material="security"/>
@@ -95,10 +96,57 @@ export default class StarboardExtension extends LensRendererExtension {
 
     kubeObjectDetailItems = [
         {
+            kind: 'Pod',
+            apiVersions: ['v1'],
+            priority: 10,
+            components: {
+                Details: (props: Component.KubeObjectDetailsProps) =>
+                    <WorkloadVulnerabilities {...props} />
+            }
+        },
+        {
+            kind: "Deployment",
+            apiVersions: ["apps/v1"],
+            priority: 10,
+            components: {
+                Details: (props: Component.KubeObjectDetailsProps) =>
+                    <WorkloadVulnerabilities {...props} />
+            }
+        },
+        {
+            kind: 'DaemonSet',
+            apiVersions: ['apps/v1'],
+            priority: 10,
+            components: {
+                Details: (props: Component.KubeObjectDetailsProps) =>
+                    <WorkloadVulnerabilities {...props} />
+            }
+        },
+        {
+            kind: 'StatefulSet',
+            apiVersions: ['apps/v1'],
+            priority: 10,
+            components: {
+                Details: (props: Component.KubeObjectDetailsProps) =>
+                    <WorkloadVulnerabilities {...props} />
+            }
+        },
+        {
+            kind: "ReplicaSet",
+            apiVersions: ["apps/v1"],
+            priority: 10,
+            components: {
+                Details: (props: Component.KubeObjectDetailsProps) =>
+                    <WorkloadVulnerabilities {...props} />
+            }
+        },
+
+        {
             kind: VulnerabilityReport.kind,
             apiVersions: ["aquasecurity.github.io/v1alpha1"],
             components: {
-                Details: (props: VulnerabilityReportDetailsProps) => <VulnerabilityReportDetails {...props} />
+                Details: (props: VulnerabilityReportDetailsProps) => <VulnerabilityReportDetails
+                    showObjectMeta={true} {...props} />
             }
         },
         {

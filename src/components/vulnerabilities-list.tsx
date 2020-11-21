@@ -32,8 +32,7 @@ export class VulnerabilitiesList extends React.Component<Props> {
 
         return (
             <div>
-                <Component.DrawerTitle title="Vulnerabilities"/>
-                <Component.Table className="box grow">
+                <Component.Table>
                     <Component.TableHead>
                         <Component.TableCell className="vulnerabilityID">ID</Component.TableCell>
                         <Component.TableCell className="severity">Severity</Component.TableCell>
