@@ -25,6 +25,7 @@ export class WorkloadVulnerabilities extends React.Component<Component.KubeObjec
         return (
             <div>
                 <Component.DrawerTitle title="VulnerabilityReports"/>
+                {vulnerabilityReports.length == 0 && <div>N/A</div>}
                 {
                     vulnerabilityReports.map((report) => {
                         return (

@@ -14,6 +14,7 @@ import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-lis
 import {CISKubeBenchReport} from "./src/ciskubebench-report";
 import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
 import {WorkloadVulnerabilities} from "./src/components/workload-vulnerabilities";
+import {WorkloadConfigAudit} from "./src/components/workload-configaudit";
 
 export function CertificateIcon(props: Component.IconProps) {
     return <Component.Icon {...props} material="security"/>
@@ -96,51 +97,65 @@ export default class StarboardExtension extends LensRendererExtension {
 
     kubeObjectDetailItems = [
         {
-            kind: 'Pod',
-            apiVersions: ['v1'],
-            priority: 10,
+            kind: "Pod",
+            apiVersions: ["v1"],
+            priority: 9,
             components: {
                 Details: (props: Component.KubeObjectDetailsProps) =>
-                    <WorkloadVulnerabilities {...props} />
+                    <React.Fragment>
+                        <WorkloadConfigAudit {...props} />
+                        <WorkloadVulnerabilities {...props}/>
+                    </React.Fragment>
             }
         },
         {
             kind: "Deployment",
             apiVersions: ["apps/v1"],
-            priority: 10,
+            priority: 9,
             components: {
                 Details: (props: Component.KubeObjectDetailsProps) =>
-                    <WorkloadVulnerabilities {...props} />
+                    <React.Fragment>
+                        <WorkloadConfigAudit {...props} />
+                        <WorkloadVulnerabilities {...props}/>
+                    </React.Fragment>
             }
         },
         {
-            kind: 'DaemonSet',
-            apiVersions: ['apps/v1'],
-            priority: 10,
+            kind: "DaemonSet",
+            apiVersions: ["apps/v1"],
+            priority: 9,
             components: {
                 Details: (props: Component.KubeObjectDetailsProps) =>
-                    <WorkloadVulnerabilities {...props} />
+                    <React.Fragment>
+                        <WorkloadConfigAudit {...props} />
+                        <WorkloadVulnerabilities {...props}/>
+                    </React.Fragment>
             }
         },
         {
-            kind: 'StatefulSet',
-            apiVersions: ['apps/v1'],
-            priority: 10,
+            kind: "StatefulSet",
+            apiVersions: ["apps/v1"],
+            priority: 9,
             components: {
                 Details: (props: Component.KubeObjectDetailsProps) =>
-                    <WorkloadVulnerabilities {...props} />
+                    <React.Fragment>
+                        <WorkloadConfigAudit {...props} />
+                        <WorkloadVulnerabilities {...props}/>
+                    </React.Fragment>
             }
         },
         {
             kind: "ReplicaSet",
             apiVersions: ["apps/v1"],
-            priority: 10,
+            priority: 9,
             components: {
                 Details: (props: Component.KubeObjectDetailsProps) =>
-                    <WorkloadVulnerabilities {...props} />
+                    <React.Fragment>
+                        <WorkloadConfigAudit {...props} />
+                        <WorkloadVulnerabilities {...props}/>
+                    </React.Fragment>
             }
         },
-
         {
             kind: VulnerabilityReport.kind,
             apiVersions: ["aquasecurity.github.io/v1alpha1"],
@@ -153,7 +168,8 @@ export default class StarboardExtension extends LensRendererExtension {
             kind: ConfigAuditReport.kind,
             apiVersions: ["aquasecurity.github.io/v1alpha1"],
             components: {
-                Details: (props: ConfigAuditReportDetailsProps) => <ConfigAuditReportDetails {...props} />
+                Details: (props: ConfigAuditReportDetailsProps) => <ConfigAuditReportDetails
+                    showObjectMeta {...props} />
             }
         },
         {
