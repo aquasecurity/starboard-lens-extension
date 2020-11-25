@@ -16,9 +16,9 @@ export class ConfigAuditChecksList extends React.Component<Props> {
 
         return (
             <div>
-                <ChecksList title="Pod Template Checks" checks={podChecks}/>
+                <ChecksList title="" checks={podChecks}/>
                 {
-                    Object.keys(containerChecks).map((key, index) => <ChecksList title={"Container Checks " + key}
+                    Object.keys(containerChecks).map((key, index) => <ChecksList title={key}
                                                                                  checks={containerChecks[key]}/>)
                 }
             </div>
