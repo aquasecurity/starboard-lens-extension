@@ -10,25 +10,26 @@ export class VulnerabilitiesList extends React.Component<Props> {
 
     getTableRow(index: number) {
         const {vulnerabilities} = this.props;
-
-        let avdURL: JSX.Element;
+        let avdURL: string;
         let vulnID = vulnerabilities[index].vulnerabilityID;
 
         if (vulnID.startsWith('CVE-')) {
-            avdURL =  <a target="_blank" href={`https://avd.aquasec.com/nvd/${vulnID}`.toLowerCase()}>{vulnID}</a>;
+            avdURL =  `https://avd.aquasec.com/nvd/${vulnID}`.toLowerCase()
         } else if (vulnID.startsWith('RUSTSEC-')) {
-            avdURL =  <a target="_blank" href={`https://rustsec.org/advisories/${vulnID}`}>{vulnID}</a>;
+            avdURL =  `https://rustsec.org/advisories/${vulnID}`
         } else if (vulnID.startsWith('GHSA-')) {
-            avdURL =  <a target="_blank" href={`https://github.com/advisories/${vulnID}`}>{vulnID}</a>;
+            avdURL =  `https://github.com/advisories/${vulnID}`
         } else if (vulnID.startsWith('TEMP-')) {
-            avdURL =  <a target="_blank" href={`https://security-tracker.debian.org/tracker/${vulnID}`}>{vulnID}</a>;
+            avdURL =  `https://security-tracker.debian.org/tracker/${vulnID}`
         } else {
-            avdURL =  <a target="_blank" href={`https://google.com/search?q=${vulnID}`}>{vulnID}</a>;
+            avdURL =  `https://google.com/search?q=${vulnID}`
         }
 
         return (
             <Component.TableRow key={vulnID} nowrap>
-                <Component.TableCell className="vulnerabilityID">{avdURL}</Component.TableCell>
+                <Component.TableCell className="vulnerabilityID">
+                    <a target="_blank" href={avdURL}>{vulnID}</a>
+                    </Component.TableCell>
                 <Component.TableCell className="severity">{vulnerabilities[index].severity}</Component.TableCell>
                 <Component.TableCell className="resource">{vulnerabilities[index].resource}</Component.TableCell>
                 <Component.TableCell
