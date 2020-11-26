@@ -10,10 +10,26 @@ export class VulnerabilitiesList extends React.Component<Props> {
 
     getTableRow(index: number) {
         const {vulnerabilities} = this.props;
+        let avdURL: string;
+        let vulnID = vulnerabilities[index].vulnerabilityID;
+
+        if (vulnID.startsWith('CVE-')) {
+            avdURL =  `https://avd.aquasec.com/nvd/${vulnID}`.toLowerCase()
+        } else if (vulnID.startsWith('RUSTSEC-')) {
+            avdURL =  `https://rustsec.org/advisories/${vulnID}`
+        } else if (vulnID.startsWith('GHSA-')) {
+            avdURL =  `https://github.com/advisories/${vulnID}`
+        } else if (vulnID.startsWith('TEMP-')) {
+            avdURL =  `https://security-tracker.debian.org/tracker/${vulnID}`
+        } else {
+            avdURL =  `https://google.com/search?q=${vulnID}`
+        }
+
         return (
-            <Component.TableRow key={vulnerabilities[index].vulnerabilityID} nowrap>
-                <Component.TableCell
-                    className="vulnerabilityID">{vulnerabilities[index].vulnerabilityID}</Component.TableCell>
+            <Component.TableRow key={vulnID} nowrap>
+                <Component.TableCell className="vulnerabilityID">
+                    <a target="_blank" href={avdURL}>{vulnID}</a>
+                    </Component.TableCell>
                 <Component.TableCell className="severity">{vulnerabilities[index].severity}</Component.TableCell>
                 <Component.TableCell className="resource">{vulnerabilities[index].resource}</Component.TableCell>
                 <Component.TableCell
