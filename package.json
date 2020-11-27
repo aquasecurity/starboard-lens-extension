@@ -24,7 +24,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@k8slens/extensions": "^4.0.0-beta.4",
+    "@k8slens/extensions": "^4.0.0-rc.1",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
     "@types/react": "^16.9.35",
