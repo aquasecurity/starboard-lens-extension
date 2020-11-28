@@ -26,8 +26,7 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 **Manage Lens Extensions** page.
 
 1. Download your desired version from GitHub [release][release] page or GitHub
-   [package registry](https://github.com/aquasecurity/starboard-lens-extension/packages/520430). Alternatively,
-   just copy the download URL of the release artifact.
+   [package registry][package-registry]. Alternatively, just copy the download URL of the release artifact.
 2. Open Lens application and select **Lens** menu, and then click **Extensions** item, or press
    <kbd>Shift</kbd> + <kbd>Command</kbd> + <kbd>E</kbd> to open the **Manage Lens Extensions** page.
 3. Specify the path (.tar, .tgz) or download URL to the extension package and click **Install**.
@@ -80,6 +79,7 @@ You must have a working Node.js environment.
 [lens-releases]: https://github.com/lensapp/lens/releases
 [release-img]: https://img.shields.io/github/release/aquasecurity/starboard-lens-extension.svg?logo=github
 [release]: https://github.com/aquasecurity/starboard-lens-extension/releases
+[package-registry]: https://github.com/aquasecurity/starboard-lens-extension/packages/520430
 [build-action-img]: https://github.com/aquasecurity/starboard-lens-extension/workflows/Build/badge.svg
 [actions]: https://github.com/aquasecurity/starboard-lens-extension/actions
 [license]: https://github.com/aquasecurity/starboard-lens-extension/blob/master/LICENSE
