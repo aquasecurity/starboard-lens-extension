@@ -40,7 +40,7 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 
 ### From Source (Linux, macOS)
 
-Building from source is slightly more work, but is the best way to go if you want to test the latest (pre-release)
+Building from source is slightly more involved, but it's the best way to go if you want to test the latest (pre-release)
 version of the extension.
 
 You must have a working Node.js environment.
@@ -54,7 +54,7 @@ You must have a working Node.js environment.
    ```
 2. Open Lens application and select **Lens** menu, and then click **Extensions** item, or press
    <kbd>Shift</kbd> + <kbd>Command</kbd> + <kbd>E</kbd> to open the **Manage Lens Extensions** page.
-3. If everything is fine, you'll see the `@aquasecurity/starboard-lens-extension` extension listed under
+3. If everything goes fine, you'll see the `@aquasecurity/starboard-lens-extension` extension listed under
    **Installed Extensions**. Click **Enable** to enable it.
    ![](docs/images/extensions-ui-enable.png)
 
