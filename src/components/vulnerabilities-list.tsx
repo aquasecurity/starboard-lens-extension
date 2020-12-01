@@ -1,17 +1,28 @@
-import {Component} from "@k8slens/extensions"
 import React from "react"
-import {Vulnerability} from "../vulnerability-report";
+import styled from "@emotion/styled"
+import {Vulnerability} from "../vulnerability-report"
+import {Component} from "@k8slens/extensions"
 
 interface Props {
     vulnerabilities: Vulnerability[];
 }
 
-export class VulnerabilitiesList extends React.Component<Props> {
+const Wrapper = styled.div`
+  .Table.virtual {
+      height: 500px;
 
-    getTableRow(index: number) {
+      .VirtualList {
+          height: 100%;
+      }
+  }
+`
+
+export class VulnerabilitiesList extends React.Component<Props> {
+    getTableRow = (uid: string) => {
         const {vulnerabilities} = this.props;
+        const vulnerability = vulnerabilities.find(item => item.getId() == uid);
         let avdURL: string;
-        let vulnID = vulnerabilities[index].vulnerabilityID;
+        let vulnID = vulnerability.getId();
 
         if (vulnID.startsWith('CVE-')) {
             avdURL =  `https://avd.aquasec.com/nvd/${vulnID}`.toLowerCase()
@@ -26,29 +37,34 @@ export class VulnerabilitiesList extends React.Component<Props> {
         }
 
         return (
-            <Component.TableRow key={vulnID} nowrap>
+            <Component.TableRow key={vulnID} nowrap sortItem={vulnerability}>
                 <Component.TableCell className="vulnerabilityID">
                     <a target="_blank" href={avdURL}>{vulnID}</a>
                     </Component.TableCell>
-                <Component.TableCell className="severity">{vulnerabilities[index].severity}</Component.TableCell>
-                <Component.TableCell className="resource">{vulnerabilities[index].resource}</Component.TableCell>
+                <Component.TableCell className="severity">{vulnerability.severity}</Component.TableCell>
+                <Component.TableCell className="resource">{vulnerability.resource}</Component.TableCell>
                 <Component.TableCell
-                    className="installedVersion">{vulnerabilities[index].installedVersion}</Component.TableCell>
+                    className="installedVersion">{vulnerability.installedVersion}</Component.TableCell>
                 <Component.TableCell
-                    className="fixedVersion">{vulnerabilities[index].fixedVersion}</Component.TableCell>
+                    className="fixedVersion">{vulnerability.fixedVersion}</Component.TableCell>
             </Component.TableRow>
         );
     }
 
     render() {
         const {vulnerabilities} = this.props
+        const virtual = vulnerabilities.length > 50;
         if (!vulnerabilities.length) {
             return null;
         }
 
         return (
-            <div>
-                <Component.Table>
+            <Wrapper>
+                <Component.Table
+                    virtual={virtual}
+                    items={vulnerabilities}
+                    getTableRow={this.getTableRow}
+                >
                     <Component.TableHead>
                         <Component.TableCell className="vulnerabilityID">ID</Component.TableCell>
                         <Component.TableCell className="severity">Severity</Component.TableCell>
@@ -57,10 +73,10 @@ export class VulnerabilitiesList extends React.Component<Props> {
                         <Component.TableCell className="fixedVersion">Fixed Version</Component.TableCell>
                     </Component.TableHead>
                     {
-                        vulnerabilities.map((vulnerability, index) => this.getTableRow(index))
+                        !virtual && vulnerabilities.map((vulnerability) => this.getTableRow(vulnerability.getId()))
                     }
                 </Component.Table>
-            </div>
+            </Wrapper>
         )
     }
 

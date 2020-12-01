@@ -24,12 +24,15 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@emotion/css": "^11.0.0",
+    "@emotion/react": "^11.1.1",
+    "@emotion/styled": "^11.0.0",
     "@k8slens/extensions": "^4.0.0-rc.1",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.35",
+    "mobx": "^5.15.5",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
-    "@types/react": "^16.9.35",
-    "@types/node": "^12.0.0",
-    "mobx": "^5.15.5",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11"
   }
