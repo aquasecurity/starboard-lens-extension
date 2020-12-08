@@ -3,18 +3,45 @@ on:
   push:
     tags:
       - "v*"
+
+env:
+  NODE_VERSION: '12.x'
+
 jobs:
   release:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
         with:
           node-version: '12.x'
           registry-url: 'https://npm.pkg.github.com/aquasecurity'
           scope: '@aquasecurity'
       - run: npm ci
       - run: npm run build
-      - run: npm publish
+      - name: Publish to GitHub package registry
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create traball from package
+        run: npm pack
+      - name: Create GitHub release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: true
+      - name: Upload GitHub assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: aquasecurity-starboard-lens-extension-${{ github.ref }}.tgz
+          asset_name: starboard-lens-extension-${{ github.ref }}.tgz
+          asset_content_type: application/octet-stream
