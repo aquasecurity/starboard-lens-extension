@@ -42,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: aquasecurity-starboard-lens-extension-${{ github.ref }}.tgz
-          asset_name: starboard-lens-extension-${{ github.ref }}.tgz
+          asset_path: aquasecurity-starboard-lens-extension-${{ github.event.release.tag_name }}.tgz
+          asset_name: starboard-lens-extension-${{ github.event.release.tag_name }}.tgz
           asset_content_type: application/octet-stream
