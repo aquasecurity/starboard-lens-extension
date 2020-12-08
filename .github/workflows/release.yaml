@@ -18,8 +18,9 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://npm.pkg.github.com/aquasecurity'
           scope: '@aquasecurity'
-      - run: npm ci
-      - run: npm run build
+      - run: |
+          npm ci
+          npm run build
       - name: Publish to GitHub package registry
         run: npm publish
         env:
@@ -36,12 +37,17 @@ jobs:
           release_name: ${{ github.ref }}
           draft: false
           prerelease: true
+      - run: |
+          GITHUB_REF=${{ github.ref }}
+          GITHUB_TAG=${GITHUB_REF#/refs/tags/v}
+          echo $GITHUB_REF $GITHUB_TAG
+          echo "GITHUB_TAG=$GITHUB_TAG" >> $GITHUB_ENV
       - name: Upload GitHub assets
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: aquasecurity-starboard-lens-extension-${{ github.event.release.tag_name }}.tgz
-          asset_name: starboard-lens-extension-${{ github.event.release.tag_name }}.tgz
+          asset_path: aquasecurity-starboard-lens-extension-${{ env.GITHUB_TAG }}.tgz
+          asset_name: starboard-lens-extension-${{ env.GITHUB_TAG }}.tgz
           asset_content_type: application/octet-stream
