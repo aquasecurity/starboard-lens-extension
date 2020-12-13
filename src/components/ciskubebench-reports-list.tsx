@@ -13,10 +13,6 @@ enum sortBy {
 
 export class CISKubeBenchReportsList extends React.Component<{ extension: LensRendererExtension }> {
 
-    async componentDidMount() {
-        await cisKubeBenchReportsStore.loadAll()
-    }
-
     render() {
         return (
             <Component.KubeObjectListLayout

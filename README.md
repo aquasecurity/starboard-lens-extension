@@ -3,19 +3,20 @@
 > This is a [Lens][lens] extension for [Starboard][starboard] which provides visibility into
 > vulnerability assessment reports for Kubernetes workloads stored as [custom security resources][starboard-crds].
 
-[![GitHub Release][release-img]][release]
+[![GitHub Release][release-img]][releases]
 [![GitHub Build Actions][build-action-img]][actions]
 [![License][license-img]][license]
+[![GitHub All Releases][github-all-releases-img]][releases]
 
 [![Screenshot](docs/images/starboard-lens-extension-video.png)](https://youtu.be/X-bhVwmp2l4)
 
 ## Installation
 
-This guide shows how to install the extension either from source or from pre-built binary releases.
+This guide shows how to install the extension either from from pre-built binary releases or source.
 
 ### Prerequisites
 
-* Lens >= [4.0.0-rc1.4][min-lens] should first be [installed][lens-installation].
+* Lens >= [4.0.0][min-lens] should first be [installed][lens-installation].
 * Follow Starboard [Getting Started][starboard-getting-started] guide to understand how Starboard is
   initialized and how it generates security reports, which are then stored as custom resources.
 
@@ -78,11 +79,12 @@ You must have a working Node.js environment.
 [lens-installation]: https://github.com/lensapp/lens#installation
 [lens-releases]: https://github.com/lensapp/lens/releases
 [release-img]: https://img.shields.io/github/release/aquasecurity/starboard-lens-extension.svg?logo=github
-[release]: https://github.com/aquasecurity/starboard-lens-extension/releases
+[releases]: https://github.com/aquasecurity/starboard-lens-extension/releases
+[github-all-releases-img]: https://img.shields.io/github/downloads/aquasecurity/starboard-lens-extension/total?logo=github
 [package-registry]: https://github.com/aquasecurity/starboard-lens-extension/packages/520430
 [build-action-img]: https://github.com/aquasecurity/starboard-lens-extension/workflows/Build/badge.svg
 [actions]: https://github.com/aquasecurity/starboard-lens-extension/actions
 [license]: https://github.com/aquasecurity/starboard-lens-extension/blob/master/LICENSE
 [license-img]: https://img.shields.io/github/license/aquasecurity/starboard-lens-extension
 
-[min-lens]: https://github.com/lensapp/lens/releases/tag/v4.0.0-rc.1
+[min-lens]: https://github.com/lensapp/lens/releases/tag/v4.0.0
