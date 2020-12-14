@@ -9,10 +9,6 @@ import {ConfigAuditReportDetails} from "./configaudit-report-details";
  */
 export class WorkloadConfigAudit extends React.Component<Component.KubeObjectDetailsProps> {
 
-    async componentDidMount() {
-        await configAuditReportsStore.loadAll()
-    }
-
     render() {
         const {object: workload} = this.props;
 

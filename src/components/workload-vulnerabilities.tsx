@@ -7,10 +7,6 @@ import {VulnerabilityReportDetails} from "./vulnerability-report-details";
 // specified Kubernetes workload and then render those reports.
 export class WorkloadVulnerabilities extends React.Component<Component.KubeObjectDetailsProps> {
 
-    async componentDidMount() {
-        await vulnerabilityReportsStore.loadAll()
-    }
-
     render() {
         const {object: workload} = this.props;
 

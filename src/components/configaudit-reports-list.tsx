@@ -12,10 +12,6 @@ enum sortBy {
 
 export class ConfigAuditReportPage extends React.Component<{ extension: LensRendererExtension }> {
 
-    async componentDidMount() {
-        await configAuditReportsStore.loadAll()
-    }
-
     render() {
         return (
             <Component.KubeObjectListLayout
