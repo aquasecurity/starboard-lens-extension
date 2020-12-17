@@ -70,7 +70,7 @@ export class VulnerabilitiesList extends React.Component<Props> {
         const sortedBySeverity: Vulnerability[] = []
         const severityTypes = ["critical", "high", "medium", "low", "unknown"]
 
-        for(let severity in severityTypes){
+        for(let severity of severityTypes){
             if(severity in groupBySeverity){
                 sortedBySeverity.push(...groupBySeverity[severity])
             }
