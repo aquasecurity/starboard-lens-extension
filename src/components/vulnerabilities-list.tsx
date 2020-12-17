@@ -51,6 +51,34 @@ export class VulnerabilitiesList extends React.Component<Props> {
         );
     }
 
+    sortBySeverity(): Vulnerability[]{
+        const {vulnerabilities} = this.props
+
+        // First: group severities by type
+        const groupBySeverity: {[key: string]: Vulnerability[]} = {}
+
+        for(let vulnerability of vulnerabilities){
+            let {severity} = vulnerability;
+            if(!groupBySeverity[severity]){
+                groupBySeverity[severity] = []
+            }
+            groupBySeverity[severity].push(vulnerability);
+        }
+        
+        // Second: add grouped severities in order from 
+        // critical to unknown in a new array
+        const sortedBySeverity: Vulnerability[] = []
+        const severityTypes = ["critical", "high", "medium", "low", "unknown"]
+
+        for(let severity in severityTypes){
+            if(severity in groupBySeverity){
+                sortedBySeverity.push(...groupBySeverity[severity])
+            }
+        }
+
+        return sortedBySeverity
+    }
+
     render() {
         const {vulnerabilities} = this.props
         const virtual = vulnerabilities.length > 50;
@@ -73,7 +101,7 @@ export class VulnerabilitiesList extends React.Component<Props> {
                         <Component.TableCell className="fixedVersion">Fixed Version</Component.TableCell>
                     </Component.TableHead>
                     {
-                        !virtual && vulnerabilities.map((vulnerability) => this.getTableRow(vulnerability.getId()))
+                        !virtual && this.sortBySeverity().map((vulnerability) => this.getTableRow(vulnerability.getId()))
                     }
                 </Component.Table>
             </Wrapper>
