@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import {Vulnerability} from "../vulnerability-report"
 import {Component} from "@k8slens/extensions"
 
-interface Props {
+export interface Props {
     vulnerabilities: Vulnerability[];
 }
 
@@ -41,7 +41,7 @@ export class VulnerabilitiesList extends React.Component<Props> {
                 <Component.TableCell className="vulnerabilityID">
                     <a target="_blank" href={avdURL}>{vulnID}</a>
                     </Component.TableCell>
-                <Component.TableCell className="severity">{vulnerability.severity}</Component.TableCell>
+                <Component.TableCell className="severity" data-testid="severity">{vulnerability.severity}</Component.TableCell>
                 <Component.TableCell className="resource">{vulnerability.resource}</Component.TableCell>
                 <Component.TableCell
                     className="installedVersion">{vulnerability.installedVersion}</Component.TableCell>
