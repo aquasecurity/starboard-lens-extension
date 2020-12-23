@@ -17,6 +17,18 @@ const Wrapper = styled.div`
   }
 `
 
+const severityOrder = new Map([
+    ["CRITICAL", 0],
+    ["HIGH", 1],
+    ["MEDIUM", 2],
+    ["LOW", 3],
+    ["UNKNOWN", 4]
+])
+
+const BySeverity = (v1: Vulnerability, v2: Vulnerability) => {
+    return severityOrder.get(v1.severity) - severityOrder.get(v2.severity)
+}
+
 export class VulnerabilitiesList extends React.Component<Props> {
     getTableRow = (uid: string) => {
         const {vulnerabilities} = this.props;
@@ -25,22 +37,22 @@ export class VulnerabilitiesList extends React.Component<Props> {
         let vulnID = vulnerability.getId();
 
         if (vulnID.startsWith('CVE-')) {
-            avdURL =  `https://avd.aquasec.com/nvd/${vulnID}`.toLowerCase()
+            avdURL = `https://avd.aquasec.com/nvd/${vulnID}`.toLowerCase()
         } else if (vulnID.startsWith('RUSTSEC-')) {
-            avdURL =  `https://rustsec.org/advisories/${vulnID}`
+            avdURL = `https://rustsec.org/advisories/${vulnID}`
         } else if (vulnID.startsWith('GHSA-')) {
-            avdURL =  `https://github.com/advisories/${vulnID}`
+            avdURL = `https://github.com/advisories/${vulnID}`
         } else if (vulnID.startsWith('TEMP-')) {
-            avdURL =  `https://security-tracker.debian.org/tracker/${vulnID}`
+            avdURL = `https://security-tracker.debian.org/tracker/${vulnID}`
         } else {
-            avdURL =  `https://google.com/search?q=${vulnID}`
+            avdURL = `https://google.com/search?q=${vulnID}`
         }
 
         return (
             <Component.TableRow key={vulnID} nowrap sortItem={vulnerability}>
                 <Component.TableCell className="vulnerabilityID">
                     <a target="_blank" href={avdURL}>{vulnID}</a>
-                    </Component.TableCell>
+                </Component.TableCell>
                 <Component.TableCell className="severity">{vulnerability.severity}</Component.TableCell>
                 <Component.TableCell className="resource">{vulnerability.resource}</Component.TableCell>
                 <Component.TableCell
@@ -58,11 +70,13 @@ export class VulnerabilitiesList extends React.Component<Props> {
             return null;
         }
 
+        const sorted = vulnerabilities.sort(BySeverity)
+
         return (
             <Wrapper>
                 <Component.Table
                     virtual={virtual}
-                    items={vulnerabilities}
+                    items={sorted}
                     getTableRow={this.getTableRow}
                 >
                     <Component.TableHead>
@@ -73,7 +87,7 @@ export class VulnerabilitiesList extends React.Component<Props> {
                         <Component.TableCell className="fixedVersion">Fixed Version</Component.TableCell>
                     </Component.TableHead>
                     {
-                        !virtual && vulnerabilities.map((vulnerability) => this.getTableRow(vulnerability.getId()))
+                        !virtual && sorted.map((vulnerability) => this.getTableRow(vulnerability.getId()))
                     }
                 </Component.Table>
             </Wrapper>
