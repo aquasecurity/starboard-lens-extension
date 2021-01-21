@@ -23,7 +23,9 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
             <div className="ConfigAuditReport">
                 {this.props.showObjectMeta &&
                 <Component.KubeObjectMeta object={report} hideFields={["uid", "resourceVersion", "selfLink"]}/>}
-
+                <Component.DrawerItem name="Pass">
+                    {report.report.summary.passCount}
+                </Component.DrawerItem>
                 <Component.DrawerItem name="Danger">
                     {report.report.summary.dangerCount}
                 </Component.DrawerItem>

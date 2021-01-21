@@ -6,6 +6,7 @@ import {ConfigAuditReport} from "../configaudit-report";
 enum sortBy {
     name = "name",
     namespace = "namespace",
+    pass = "pass",
     danger = "danger",
     warning = "warning",
 }
@@ -19,6 +20,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: LensRend
                 sortingCallbacks={{
                     [sortBy.name]: (report: ConfigAuditReport) => report.getName(),
                     [sortBy.namespace]: (report: ConfigAuditReport) => report.metadata.namespace,
+                    [sortBy.pass]: (report: ConfigAuditReport) => report.report.summary.passCount,
                     [sortBy.danger]: (report: ConfigAuditReport) => report.report.summary.dangerCount,
                     [sortBy.warning]: (report: ConfigAuditReport) => report.report.summary.warningCount,
                 }}
@@ -27,16 +29,18 @@ export class ConfigAuditReportPage extends React.Component<{ extension: LensRend
                 ]}
                 renderHeaderTitle="ConfigAuditReports"
                 renderTableHeader={[
-                    {title: "Name", className: "name", sortBy: sortBy.name},
-                    {title: "Namespace", className: "namespace", sortBy: sortBy.namespace},
-                    {title: "Scanner", className: "scanner"},
-                    {title: "Danger", className: "danger", sortBy: sortBy.danger},
-                    {title: "Warning", className: "xwarning", sortBy: sortBy.warning},
+                    {title: "Name", sortBy: sortBy.name},
+                    {title: "Namespace", sortBy: sortBy.namespace},
+                    {title: "Scanner",},
+                    {title: "Pass", sortBy: sortBy.pass},
+                    {title: "Danger", sortBy: sortBy.danger},
+                    {title: "Warning", sortBy: sortBy.warning},
                 ]}
                 renderTableContents={(report: ConfigAuditReport) => [
                     report.getName(),
                     report.metadata.namespace,
                     report.report.scanner.name + " " + report.report.scanner.version,
+                    report.report.summary.passCount,
                     report.report.summary.dangerCount,
                     report.report.summary.warningCount,
                 ]}

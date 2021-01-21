@@ -37,6 +37,7 @@ export class ConfigAuditReport extends K8sApi.KubeObject {
             version: string;
         }
         summary: {
+            passCount?: number;
             dangerCount: number;
             warningCount: number;
         }
