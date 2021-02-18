@@ -33,17 +33,18 @@ export class CISKubeBenchReportsList extends React.Component<{ extension: LensRe
                     {title: "Name", className: "name", sortBy: sortBy.name},
                     {title: "Scanner", className: "scanner"},
                     {title: "Fail", className: "fail", sortBy: sortBy.fail},
+                    {title: "Warn", className: "pass", sortBy: sortBy.warn},
                     {title: "Info", className: "xinfo", sortBy: sortBy.info},
                     {title: "Pass", className: "pass", sortBy: sortBy.pass},
-                    {title: "Warn", className: "pass", sortBy: sortBy.warn},
+
                 ]}
                 renderTableContents={(report: CISKubeBenchReport) => [
                     report.getName(),
                     report.report.scanner.name + " " + report.report.scanner.version,
                     report.report.summary.failCount,
+                    report.report.summary.warnCount,
                     report.report.summary.infoCount,
                     report.report.summary.passCount,
-                    report.report.summary.warnCount,
                 ]}
             />
         )
