@@ -15,6 +15,7 @@ import {CISKubeBenchReport} from "./src/ciskubebench-report";
 import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
 import {WorkloadVulnerabilities} from "./src/components/workload-vulnerabilities";
 import {WorkloadConfigAudit} from "./src/components/workload-configaudit";
+import {NodeBenchmarks} from "./src/components/node-benchmarks";
 
 export function CertificateIcon(props: Component.IconProps) {
     return <Component.Icon {...props} material="security"/>
@@ -97,6 +98,17 @@ export default class StarboardExtension extends LensRendererExtension {
 
     kubeObjectDetailItems = [
         {
+            kind: "Node",
+            apiVersions: ["v1"],
+            priority: 9,
+            components: {
+                Details: (props: Component.KubeObjectDetailsProps) =>
+                    <React.Fragment>
+                        <NodeBenchmarks {...props} />
+                    </React.Fragment>
+            }
+        },
+        {
             kind: "Pod",
             apiVersions: ["v1"],
             priority: 9,
@@ -176,7 +188,8 @@ export default class StarboardExtension extends LensRendererExtension {
             kind: CISKubeBenchReport.kind,
             apiVersions: ["aquasecurity.github.io/v1alpha1"],
             components: {
-                Details: (props: CISKubeBenchReportDetailsProps) => <CISKubeBenchReportDetails {...props} />
+                Details: (props: CISKubeBenchReportDetailsProps) => <CISKubeBenchReportDetails
+                    showObjectMeta {...props} />
             }
         }
     ]

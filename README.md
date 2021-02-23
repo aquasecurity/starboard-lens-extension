@@ -22,7 +22,7 @@ This guide shows how to install the extension either from from pre-built binary 
 
 ### From the Binary Releases
 
-Every [release][release] of Lens extension for Starboard provides the tarball-file that can be manually
+Every [release][releases] of Lens extension for Starboard provides the tarball-file that can be manually
 downloaded and installed. Alternatively, you can copy the download URL of the release artifact to paste it in the
 **Manage Lens Extensions** page.
 
