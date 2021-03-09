@@ -1,7 +1,7 @@
 {
   "name": "@aquasecurity/starboard-lens-extension",
   "publisher": "aquasecurity.github.io",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lens extension for viewing Starboard security information",
   "homepage": "https://github.com/aquasecurity/starboard-lens-extension",
   "repository": {
@@ -22,12 +22,11 @@
     "build": "npm run clean && webpack",
     "clean": "rm -rf ./dist"
   },
-  "dependencies": {},
   "devDependencies": {
     "@emotion/css": "^11.0.0",
     "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
-    "@k8slens/extensions": "^4.0.0",
+    "@k8slens/extensions": "^4.1.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.35",
     "mobx": "^5.15.5",
