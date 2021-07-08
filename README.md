@@ -16,9 +16,19 @@ This guide shows how to install the extension either from from pre-built binary 
 
 ### Prerequisites
 
-* Lens >= [4.0][min-lens] and < 5.0 should first be [installed][lens-installation].
+* Lens >= [4.0][min-lens] should first be [installed][lens-installation].
 * Follow Starboard [Getting Started][starboard-getting-started] guide to understand how Starboard is
   initialized and how it generates security reports, which are then stored as custom resources.
+
+### Compatibility Matrix
+
+The following matrix indicates versions of this extension and compatible Lens releases.
+
+| Lens | Extension |
+|------|-----------|
+| 5.0  | [0.1.0](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.1.0) |
+| 4.0  | [0.0.2](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.0.2) |
+| 4.0  | [0.0.1](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.0.1) |
 
 ### From the Binary Releases
 
@@ -73,7 +83,7 @@ You must have a working Node.js environment.
 
 [lens]: https://github.com/lensapp/lens
 [starboard]: https://github.com/aquasecurity/starboard
-[starboard-crds]: https://github.com/aquasecurity/starboard#custom-security-resources-definitions
+[starboard-crds]: https://aquasecurity.github.io/starboard/latest/crds/
 [starboard-getting-started]: https://github.com/aquasecurity/starboard#getting-started
 
 [lens-installation]: https://github.com/lensapp/lens#installation
