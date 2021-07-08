@@ -36,7 +36,7 @@ Every [release][releases] of Lens extension for Starboard provides the tarball-f
 downloaded and installed. Alternatively, you can copy the download URL of the release artifact to paste it in the
 **Manage Lens Extensions** page.
 
-1. Download your desired version from GitHub [release][release] page or GitHub
+1. Download your desired version from GitHub [releases] page or GitHub
    [package registry][package-registry]. Alternatively, just copy the download URL of the release artifact.
 2. Open Lens application and select **Lens** menu, and then click **Extensions** item, or press
    <kbd>Shift</kbd> + <kbd>Command</kbd> + <kbd>E</kbd> to open the **Manage Lens Extensions** page.
