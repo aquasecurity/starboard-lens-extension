@@ -1,9 +1,9 @@
 import React from "react";
-import {Component} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import {cisKubeBenchReportsStore} from "../ciskubebench-reports-store";
 import {CISKubeBenchReportDetails} from "./ciskubebench-report-details";
 
-export class NodeBenchmarks extends React.Component<Component.KubeObjectDetailsProps> {
+export class NodeBenchmarks extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
 
     render() {
         const {object: node} = this.props;
@@ -12,7 +12,7 @@ export class NodeBenchmarks extends React.Component<Component.KubeObjectDetailsP
 
         return (
             <div>
-                <Component.DrawerTitle title="CIS Kubernetes Benchmarks"/>
+                <Renderer.Component.DrawerTitle title="CIS Kubernetes Benchmarks"/>
                 <CISKubeBenchReportDetails object={report}/>
             </div>
         )

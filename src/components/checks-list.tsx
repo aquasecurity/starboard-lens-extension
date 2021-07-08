@@ -1,7 +1,6 @@
 import {Check} from "../configaudit-report";
 import React from "react";
-import {Component} from "@k8slens/extensions";
-import {VulnerabilitiesList} from "./vulnerabilities-list";
+import {Renderer} from "@k8slens/extensions";
 
 interface Props {
     title: string;
@@ -13,12 +12,15 @@ export class ChecksList extends React.Component<Props> {
     getTableRow(index: number) {
         const {checks} = this.props;
         return (
-            <Component.TableRow key={checks[index].checkID} nowrap>
-                <Component.TableCell className="checkSuccess">{"" + checks[index].success}</Component.TableCell>
-                <Component.TableCell className="checkID">{checks[index].checkID}</Component.TableCell>
-                <Component.TableCell className="checkSeverity">{checks[index].severity}</Component.TableCell>
-                <Component.TableCell className="checkCategory">{checks[index].category}</Component.TableCell>
-            </Component.TableRow>
+            <Renderer.Component.TableRow key={checks[index].checkID} nowrap>
+                <Renderer.Component.TableCell
+                    className="checkSuccess">{"" + checks[index].success}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell className="checkID">{checks[index].checkID}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="checkSeverity">{checks[index].severity}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="checkCategory">{checks[index].category}</Renderer.Component.TableCell>
+            </Renderer.Component.TableRow>
         )
     }
 
@@ -32,25 +34,28 @@ export class ChecksList extends React.Component<Props> {
             <div className="PodDetailsContainer">
                 {1 === 1 &&
                 <div className="pod-container-title">
-                    <Component.StatusBrick
+                    <Renderer.Component.StatusBrick
                         className="error"/>{title}
                 </div>}
 
-                <Component.DrawerItem name="Checks">
-                    <Component.DrawerParamToggler label={checks.length}>
-                        <Component.Table>
-                            <Component.TableHead>
-                                <Component.TableCell className="checkSuccess">Success</Component.TableCell>
-                                <Component.TableCell className="checkID">ID</Component.TableCell>
-                                <Component.TableCell className="checkSeverity">Severity</Component.TableCell>
-                                <Component.TableCell className="checkCategory">Category</Component.TableCell>
-                            </Component.TableHead>
+                <Renderer.Component.DrawerItem name="Checks">
+                    <Renderer.Component.DrawerParamToggler label={checks.length}>
+                        <Renderer.Component.Table>
+                            <Renderer.Component.TableHead>
+                                <Renderer.Component.TableCell
+                                    className="checkSuccess">Success</Renderer.Component.TableCell>
+                                <Renderer.Component.TableCell className="checkID">ID</Renderer.Component.TableCell>
+                                <Renderer.Component.TableCell
+                                    className="checkSeverity">Severity</Renderer.Component.TableCell>
+                                <Renderer.Component.TableCell
+                                    className="checkCategory">Category</Renderer.Component.TableCell>
+                            </Renderer.Component.TableHead>
                             {
                                 checks.map((check, index) => this.getTableRow(index))
                             }
-                        </Component.Table>
-                    </Component.DrawerParamToggler>
-                </Component.DrawerItem>
+                        </Renderer.Component.Table>
+                    </Renderer.Component.DrawerParamToggler>
+                </Renderer.Component.DrawerItem>
 
             </div>
         )

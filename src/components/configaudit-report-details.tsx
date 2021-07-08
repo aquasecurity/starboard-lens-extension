@@ -1,9 +1,9 @@
-import {Component} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {ConfigAuditReport} from "../configaudit-report";
 import {ConfigAuditChecksList} from "./configaudit-checks-list";
 
-export interface ConfigAuditReportDetailsProps extends Component.KubeObjectDetailsProps<ConfigAuditReport> {
+export interface ConfigAuditReportDetailsProps extends Renderer.Component.KubeObjectDetailsProps<ConfigAuditReport> {
 
     /*
      * Determines whether to display ObjectMeta section or not.
@@ -22,16 +22,17 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
         return (
             <div className="ConfigAuditReport">
                 {this.props.showObjectMeta &&
-                <Component.KubeObjectMeta object={report} hideFields={["uid", "resourceVersion", "selfLink"]}/>}
-                <Component.DrawerItem name="Pass">
+                <Renderer.Component.KubeObjectMeta object={report}
+                                                   hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                <Renderer.Component.DrawerItem name="Pass">
                     {report.report.summary.passCount}
-                </Component.DrawerItem>
-                <Component.DrawerItem name="Danger">
+                </Renderer.Component.DrawerItem>
+                <Renderer.Component.DrawerItem name="Danger">
                     {report.report.summary.dangerCount}
-                </Component.DrawerItem>
-                <Component.DrawerItem name="Warning">
+                </Renderer.Component.DrawerItem>
+                <Renderer.Component.DrawerItem name="Warning">
                     {report.report.summary.warningCount}
-                </Component.DrawerItem>
+                </Renderer.Component.DrawerItem>
 
                 <ConfigAuditChecksList
                     podChecks={report.report.podChecks}

@@ -1,4 +1,4 @@
-import {K8sApi} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 
 export class CISSection {
     id: string;
@@ -20,7 +20,7 @@ export class CISResult {
     scored: boolean;
 }
 
-export class CISKubeBenchReport extends K8sApi.KubeObject {
+export class CISKubeBenchReport extends Renderer.K8sApi.KubeObject {
 
     static kind = "CISKubeBenchReport"
     static namespaced = false
