@@ -1,10 +1,10 @@
-import {K8sApi} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import {ConfigAuditReport} from "./configaudit-report";
 
-export class ConfigAuditReportsApi extends K8sApi.KubeApi<ConfigAuditReport> {
+export class ConfigAuditReportsApi extends Renderer.K8sApi.KubeApi<ConfigAuditReport> {
 }
 
-export class ConfigAuditReportsStore extends K8sApi.KubeObjectStore<ConfigAuditReport> {
+export class ConfigAuditReportsStore extends Renderer.K8sApi.KubeObjectStore<ConfigAuditReport> {
     api = configAuditReportsApi
 }
 
@@ -14,4 +14,4 @@ export const configAuditReportsApi = new ConfigAuditReportsApi({
 
 export const configAuditReportsStore = new ConfigAuditReportsStore();
 
-K8sApi.apiManager.registerStore(configAuditReportsStore);
+Renderer.K8sApi.apiManager.registerStore(configAuditReportsStore);

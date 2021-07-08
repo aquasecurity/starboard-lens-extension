@@ -1,6 +1,5 @@
-import {Component, LensRendererExtension} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import React from "react"
-import {StarboardFeature} from "./src/starboard-feature"
 import {VulnerabilityReportPage} from "./src/components/vulnerability-reports-list";
 import {VulnerabilityReport} from "./src/vulnerability-report";
 import {
@@ -17,29 +16,11 @@ import {WorkloadVulnerabilities} from "./src/components/workload-vulnerabilities
 import {WorkloadConfigAudit} from "./src/components/workload-configaudit";
 import {NodeBenchmarks} from "./src/components/node-benchmarks";
 
-export function CertificateIcon(props: Component.IconProps) {
-    return <Component.Icon {...props} material="security"/>
+export function CertificateIcon(props: Renderer.Component.IconProps) {
+    return <Renderer.Component.Icon {...props} material="security"/>
 }
 
-export default class StarboardExtension extends LensRendererExtension {
-
-    clusterFeatures = [
-        {
-            title: "Starboard",
-            components: {
-                Description: () => {
-                    return (
-                        <span>
-                            Enable Kubernetes-native security (Starboard toolkit) for your cluster.
-                            Install only if Starboard has not been initialized yet.
-                            The install command will create Kubernetes resources used by Starboard.
-                        </span>
-                    )
-                }
-            },
-            feature: new StarboardFeature()
-        }
-    ]
+export default class StarboardExtension extends Renderer.LensExtension {
 
     clusterPages = [
         {
@@ -102,7 +83,7 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["v1"],
             priority: 9,
             components: {
-                Details: (props: Component.KubeObjectDetailsProps) =>
+                Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
                         <NodeBenchmarks {...props} />
                     </React.Fragment>
@@ -113,7 +94,7 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["v1"],
             priority: 9,
             components: {
-                Details: (props: Component.KubeObjectDetailsProps) =>
+                Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
                         <WorkloadConfigAudit {...props} />
                         <WorkloadVulnerabilities {...props}/>
@@ -125,7 +106,7 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["apps/v1"],
             priority: 9,
             components: {
-                Details: (props: Component.KubeObjectDetailsProps) =>
+                Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
                         <WorkloadConfigAudit {...props} />
                         <WorkloadVulnerabilities {...props}/>
@@ -137,7 +118,7 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["apps/v1"],
             priority: 9,
             components: {
-                Details: (props: Component.KubeObjectDetailsProps) =>
+                Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
                         <WorkloadConfigAudit {...props} />
                         <WorkloadVulnerabilities {...props}/>
@@ -149,7 +130,7 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["apps/v1"],
             priority: 9,
             components: {
-                Details: (props: Component.KubeObjectDetailsProps) =>
+                Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
                         <WorkloadConfigAudit {...props} />
                         <WorkloadVulnerabilities {...props}/>
@@ -161,7 +142,7 @@ export default class StarboardExtension extends LensRendererExtension {
             apiVersions: ["apps/v1"],
             priority: 9,
             components: {
-                Details: (props: Component.KubeObjectDetailsProps) =>
+                Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
                         <WorkloadConfigAudit {...props} />
                         <WorkloadVulnerabilities {...props}/>

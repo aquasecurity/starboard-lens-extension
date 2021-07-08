@@ -1,11 +1,11 @@
-import {Component} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {vulnerabilityReportsStore} from "../vulnerability-reports-store";
 import {VulnerabilityReportDetails} from "./vulnerability-report-details";
 
 // This component is trying to lookup the VulnerabilityReports associated with the
 // specified Kubernetes workload and then render those reports.
-export class WorkloadVulnerabilities extends React.Component<Component.KubeObjectDetailsProps> {
+export class WorkloadVulnerabilities extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
 
     render() {
         const {object: workload} = this.props;
@@ -20,7 +20,7 @@ export class WorkloadVulnerabilities extends React.Component<Component.KubeObjec
 
         return (
             <div>
-                <Component.DrawerTitle title="VulnerabilityReports"/>
+                <Renderer.Component.DrawerTitle title="VulnerabilityReports"/>
                 {vulnerabilityReports.length == 0 && <div>N/A</div>}
                 {
                     vulnerabilityReports.map((report) => {

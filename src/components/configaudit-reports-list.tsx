@@ -1,4 +1,4 @@
-import {Component, LensRendererExtension} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {configAuditReportsStore} from "../configaudit-reports-store";
 import {ConfigAuditReport} from "../configaudit-report";
@@ -11,11 +11,12 @@ enum sortBy {
     warning = "warning",
 }
 
-export class ConfigAuditReportPage extends React.Component<{ extension: LensRendererExtension }> {
+export class ConfigAuditReportPage extends React.Component<{ extension: Renderer.LensExtension }> {
 
     render() {
         return (
-            <Component.KubeObjectListLayout
+            <Renderer.Component.KubeObjectListLayout
+                tableId="configAuditReportsTable"
                 className="ConfigAuditReports" store={configAuditReportsStore}
                 sortingCallbacks={{
                     [sortBy.name]: (report: ConfigAuditReport) => report.getName(),

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import {Vulnerability} from "../vulnerability-report"
-import {Component} from "@k8slens/extensions"
+import {Renderer} from "@k8slens/extensions"
 
 interface Props {
     vulnerabilities: Vulnerability[];
@@ -49,17 +49,19 @@ export class VulnerabilitiesList extends React.Component<Props> {
         }
 
         return (
-            <Component.TableRow key={vulnID} nowrap sortItem={vulnerability}>
-                <Component.TableCell className="vulnerabilityID">
+            <Renderer.Component.TableRow key={vulnID} nowrap sortItem={vulnerability}>
+                <Renderer.Component.TableCell className="vulnerabilityID">
                     <a target="_blank" href={avdURL}>{vulnID}</a>
-                </Component.TableCell>
-                <Component.TableCell className="severity">{vulnerability.severity}</Component.TableCell>
-                <Component.TableCell className="resource">{vulnerability.resource}</Component.TableCell>
-                <Component.TableCell
-                    className="installedVersion">{vulnerability.installedVersion}</Component.TableCell>
-                <Component.TableCell
-                    className="fixedVersion">{vulnerability.fixedVersion}</Component.TableCell>
-            </Component.TableRow>
+                </Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="severity">{vulnerability.severity}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="resource">{vulnerability.resource}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="installedVersion">{vulnerability.installedVersion}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="fixedVersion">{vulnerability.fixedVersion}</Renderer.Component.TableCell>
+            </Renderer.Component.TableRow>
         );
     }
 
@@ -74,22 +76,25 @@ export class VulnerabilitiesList extends React.Component<Props> {
 
         return (
             <Wrapper>
-                <Component.Table
+                <Renderer.Component.Table
+                    tableId="vulnerabilitiesTable"
                     virtual={virtual}
                     items={sorted}
                     getTableRow={this.getTableRow}
                 >
-                    <Component.TableHead>
-                        <Component.TableCell className="vulnerabilityID">ID</Component.TableCell>
-                        <Component.TableCell className="severity">Severity</Component.TableCell>
-                        <Component.TableCell className="resource">Resource</Component.TableCell>
-                        <Component.TableCell className="installedVersion">Installed Version</Component.TableCell>
-                        <Component.TableCell className="fixedVersion">Fixed Version</Component.TableCell>
-                    </Component.TableHead>
+                    <Renderer.Component.TableHead>
+                        <Renderer.Component.TableCell className="vulnerabilityID">ID</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="severity">Severity</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="resource">Resource</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="installedVersion">Installed
+                            Version</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="fixedVersion">Fixed
+                            Version</Renderer.Component.TableCell>
+                    </Renderer.Component.TableHead>
                     {
                         !virtual && sorted.map((vulnerability) => this.getTableRow(vulnerability.getId()))
                     }
-                </Component.Table>
+                </Renderer.Component.Table>
             </Wrapper>
         )
     }

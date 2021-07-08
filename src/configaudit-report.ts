@@ -1,4 +1,4 @@
-import {K8sApi} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 
 export class Check {
     checkID: string;
@@ -8,7 +8,7 @@ export class Check {
     category: string
 }
 
-export class ConfigAuditReport extends K8sApi.KubeObject {
+export class ConfigAuditReport extends Renderer.K8sApi.KubeObject {
     static kind = "ConfigAuditReport"
     static namespaced = true
     static apiBase = "/apis/aquasecurity.github.io/v1alpha1/configauditreports"

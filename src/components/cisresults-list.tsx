@@ -1,5 +1,5 @@
 import React from "react";
-import {Component} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import {CISResult} from "../ciskubebench-report";
 
 interface Props {
@@ -12,12 +12,12 @@ export class CISResultsList extends React.Component<Props> {
     getTableRow(index: number) {
         const {results} = this.props;
         return (
-            <Component.TableRow key={"" + index} nowrap>
-                <Component.TableCell className="testStatus">{"" + results[index].status}</Component.TableCell>
-                <Component.TableCell className="testNumber">{results[index].test_number}</Component.TableCell>
-                <Component.TableCell className="testDescription">{results[index].test_desc}</Component.TableCell>
-                <Component.TableCell className="testScored">{"" + results[index].scored}</Component.TableCell>
-            </Component.TableRow>
+            <Renderer.Component.TableRow key={"" + index} nowrap>
+                <Renderer.Component.TableCell className="testStatus">{"" + results[index].status}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell className="testNumber">{results[index].test_number}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell className="testDescription">{results[index].test_desc}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell className="testScored">{"" + results[index].scored}</Renderer.Component.TableCell>
+            </Renderer.Component.TableRow>
         )
     }
 
@@ -26,18 +26,18 @@ export class CISResultsList extends React.Component<Props> {
 
         return (
             <div>
-                <Component.DrawerTitle title={title}/>
-                <Component.Table className="box grow">
-                    <Component.TableHead>
-                        <Component.TableCell className="testStatus">Status</Component.TableCell>
-                        <Component.TableCell className="testNumber">Number</Component.TableCell>
-                        <Component.TableCell className="testDescription">Description</Component.TableCell>
-                        <Component.TableCell className="testScored">Scored</Component.TableCell>
-                    </Component.TableHead>
+                <Renderer.Component.DrawerTitle title={title}/>
+                <Renderer.Component.Table className="box grow">
+                    <Renderer.Component.TableHead>
+                        <Renderer.Component.TableCell className="testStatus">Status</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="testNumber">Number</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="testDescription">Description</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell className="testScored">Scored</Renderer.Component.TableCell>
+                    </Renderer.Component.TableHead>
                     {
                         results.map((result, index) => this.getTableRow(index))
                     }
-                </Component.Table>
+                </Renderer.Component.Table>
             </div>
         )
     }

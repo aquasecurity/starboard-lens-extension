@@ -1,4 +1,4 @@
-import {Component, LensRendererExtension} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {cisKubeBenchReportsStore} from "../ciskubebench-reports-store";
 import {CISKubeBenchReport} from "../ciskubebench-report";
@@ -11,12 +11,12 @@ enum sortBy {
     warn = "warn",
 }
 
-export class CISKubeBenchReportsList extends React.Component<{ extension: LensRendererExtension }> {
+export class CISKubeBenchReportsList extends React.Component<{ extension: Renderer.LensExtension }> {
 
     render() {
         return (
-            <Component.KubeObjectListLayout
-                isClusterScoped={true}
+            <Renderer.Component.KubeObjectListLayout
+                tableId="kubeBenchReportsTable"
                 className="CISKubeBenchReportsList" store={cisKubeBenchReportsStore}
                 sortingCallbacks={{
                     [sortBy.name]: (report: CISKubeBenchReport) => report.getName(),

@@ -1,6 +1,6 @@
-import { LensMainExtension } from "@k8slens/extensions";
+import { Main } from "@k8slens/extensions";
 
-export default class StarboardExtensionMain extends LensMainExtension {
+export default class StarboardExtensionMain extends Main.LensExtension {
   onActivate() {
     console.log('Starboard extension activated');
   }

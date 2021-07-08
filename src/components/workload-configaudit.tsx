@@ -1,5 +1,5 @@
 import React from "react";
-import {Component} from "@k8slens/extensions";
+import {Renderer} from "@k8slens/extensions";
 import {configAuditReportsStore} from "../configaudit-reports-store";
 import {ConfigAuditReportDetails} from "./configaudit-report-details";
 
@@ -7,7 +7,7 @@ import {ConfigAuditReportDetails} from "./configaudit-report-details";
  * This component is trying to lookup the ConfigAuditReport associated with the
  * specified Kubernetes workload and then render it.
  */
-export class WorkloadConfigAudit extends React.Component<Component.KubeObjectDetailsProps> {
+export class WorkloadConfigAudit extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
 
     render() {
         const {object: workload} = this.props;
@@ -22,7 +22,7 @@ export class WorkloadConfigAudit extends React.Component<Component.KubeObjectDet
 
         return (
             <div>
-                <Component.DrawerTitle title="ConfigAuditReport"/>
+                <Renderer.Component.DrawerTitle title="ConfigAuditReport"/>
                 {configAuditReports.length == 0 && <div>N/A</div>}
                 {
                     configAuditReports.map((report) => {
