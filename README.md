@@ -16,7 +16,7 @@ This guide shows how to install the extension either from from pre-built binary 
 
 ### Prerequisites
 
-* Lens >= [4.0.0][min-lens] should first be [installed][lens-installation].
+* Lens >= [4.0][min-lens] < 5.0 should first be [installed][lens-installation].
 * Follow Starboard [Getting Started][starboard-getting-started] guide to understand how Starboard is
   initialized and how it generates security reports, which are then stored as custom resources.
 
