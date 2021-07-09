@@ -1,3 +1,4 @@
+import "./configaudit-report-details.scss";
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {ConfigAuditReport} from "../configaudit-report";
@@ -19,19 +20,26 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
     render() {
         const {object: report} = this.props;
         if (!report) return null;
+        const summary = report.report.summary;
         return (
-            <div className="ConfigAuditReport">
+            <div className="ConfigAuditReportDetails">
                 {this.props.showObjectMeta &&
-                <Renderer.Component.KubeObjectMeta object={report}
-                                                   hideFields={["uid", "resourceVersion", "selfLink"]}/>}
-                <Renderer.Component.DrawerItem name="Pass">
-                    {report.report.summary.passCount}
-                </Renderer.Component.DrawerItem>
-                <Renderer.Component.DrawerItem name="Danger">
-                    {report.report.summary.dangerCount}
-                </Renderer.Component.DrawerItem>
-                <Renderer.Component.DrawerItem name="Warning">
-                    {report.report.summary.warningCount}
+                <Renderer.Component.KubeObjectMeta
+                    object={report}
+                    hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
+                    <Renderer.Component.Badge
+                        className="theme-danger"
+                        label={summary.dangerCount}
+                        tooltip="Danger"/>
+                    <Renderer.Component.Badge
+                        className="theme-warning"
+                        label={summary.warningCount}
+                        tooltip="Warning"/>
+                    <Renderer.Component.Badge
+                        className="theme-pass"
+                        label={summary.passCount}
+                        tooltip="Pass"/>
                 </Renderer.Component.DrawerItem>
 
                 <ConfigAuditChecksList

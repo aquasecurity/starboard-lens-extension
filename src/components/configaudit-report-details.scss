@@ -1,0 +1,21 @@
+.ConfigAuditReportDetails {
+  .summary {
+    .Badge {
+
+      &.theme-danger {
+        color: white;
+        background-color: #cc1814;
+      }
+
+      &.theme-warning {
+        color: white;
+        background-color: #ffa500;
+      }
+
+      &.theme-pass {
+        color: white;
+        background-color: #00b09b;
+      }
+    }
+  }
+}
