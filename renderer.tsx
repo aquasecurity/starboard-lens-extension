@@ -6,9 +6,17 @@ import {
     VulnerabilityReportDetails,
     VulnerabilityReportDetailsProps
 } from "./src/components/vulnerability-report-details";
-import {ConfigAuditReportPage} from "./src/components/configaudit-reports-list";
-import {ConfigAuditReport} from "./src/configaudit-report";
-import {ConfigAuditReportDetails, ConfigAuditReportDetailsProps} from "./src/components/configaudit-report-details";
+import {
+    ClusterConfigAuditReportPage,
+    ConfigAuditReportPage
+} from "./src/components/configaudit-reports-list";
+import {ClusterConfigAuditReport, ConfigAuditReport} from "./src/configaudit-report";
+import {
+    ClusterConfigAuditReportDetails,
+    ClusterConfigAuditReportDetailsProps,
+    ConfigAuditReportDetails,
+    ConfigAuditReportDetailsProps
+} from "./src/components/configaudit-report-details";
 import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-list";
 import {CISKubeBenchReport} from "./src/ciskubebench-report";
 import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
@@ -33,6 +41,12 @@ export default class StarboardExtension extends Renderer.LensExtension {
             id: "configauditreports",
             components: {
                 Page: () => <ConfigAuditReportPage extension={this}/>,
+            }
+        },
+        {
+            id: "clusterconfigauditreports",
+            components: {
+                Page: () => <ClusterConfigAuditReportPage extension={this}/>,
             }
         },
         {
@@ -63,6 +77,14 @@ export default class StarboardExtension extends Renderer.LensExtension {
             parentId: "starboard",
             target: {pageId: "configauditreports"},
             title: "ConfigAuditReports",
+            components: {
+                Icon: CertificateIcon
+            }
+        },
+        {
+            parentId: "starboard",
+            target: {pageId: "clusterconfigauditreports"},
+            title: "ClusterConfigAuditReports",
             components: {
                 Icon: CertificateIcon
             }
@@ -162,6 +184,14 @@ export default class StarboardExtension extends Renderer.LensExtension {
             apiVersions: ["aquasecurity.github.io/v1alpha1"],
             components: {
                 Details: (props: ConfigAuditReportDetailsProps) => <ConfigAuditReportDetails
+                    showObjectMeta {...props} />
+            }
+        },
+        {
+            kind: ClusterConfigAuditReport.kind,
+            apiVersions: ["aquasecurity.github.io/v1alpha1"],
+            components: {
+                Details: (props: ClusterConfigAuditReportDetailsProps) => <ClusterConfigAuditReportDetails
                     showObjectMeta {...props} />
             }
         },
