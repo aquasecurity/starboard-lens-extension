@@ -22,19 +22,19 @@ export class CISKubeBenchReportDetails extends React.Component<CISKubeBenchRepor
 
                 <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
                     <Renderer.Component.Badge
-                        className="theme-fail"
+                        className="Badge theme-fail"
                         label={report.report.summary.failCount}
                         tooltip="Fail"/>
                     <Renderer.Component.Badge
-                        className="theme-warn"
+                        className="Badge theme-warn"
                         label={report.report.summary.warnCount}
                         tooltip="Warn"/>
                     <Renderer.Component.Badge
-                        className="theme-info"
+                        className="Badge theme-info"
                         label={report.report.summary.infoCount}
                         tooltip="Info"/>
                     <Renderer.Component.Badge
-                        className="theme-pass"
+                        className="Badge theme-pass"
                         label={report.report.summary.passCount}
                         tooltip="Pass"/>
                 </Renderer.Component.DrawerItem>
