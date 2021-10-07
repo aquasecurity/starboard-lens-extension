@@ -1,6 +1,6 @@
-import {Check} from "../configaudit-report";
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
+import {Check} from "./types";
 
 interface Props {
     title: string;

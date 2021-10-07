@@ -1,8 +1,8 @@
-import "./configaudit-report-details.scss";
+import "./details.scss";
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {ClusterConfigAuditReport, ConfigAuditReport} from "../configaudit-report";
 import {ConfigAuditChecksList} from "./configaudit-checks-list";
+import {ClusterConfigAuditReport, ConfigAuditReport} from "./types";
 
 export interface ClusterConfigAuditReportDetailsProps extends Renderer.Component.KubeObjectDetailsProps<ClusterConfigAuditReport> {
     showObjectMeta?: boolean
