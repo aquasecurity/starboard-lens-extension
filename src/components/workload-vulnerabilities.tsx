@@ -1,7 +1,7 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {vulnerabilityReportsStore} from "../vulnerability-reports-store";
-import {VulnerabilityReportDetails} from "./vulnerability-report-details";
+import {vulnerabilityReportsStore} from "../vulnerabilityreports/store";
+import {VulnerabilityReportDetails} from "../vulnerabilityreports/details";
 
 // This component is trying to lookup the VulnerabilityReports associated with the
 // specified Kubernetes workload and then render those reports.
