@@ -1,0 +1,24 @@
+.KubeHunterReportDetails {
+  .summary {
+    .Badge {
+      &.theme-high {
+        color: white;
+        background-color: #cc1814;
+      }
+
+      &.theme-medium {
+        color: white;
+        background-color: #ffa500;
+      }
+
+      &.theme-low {
+        color: white;
+        background-color: #515456;
+      }
+
+      &.theme-unknown {
+      }
+
+    }
+  }
+}
