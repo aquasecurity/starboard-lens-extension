@@ -1,7 +1,7 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {clusterConfigAuditReportsStore, configAuditReportsStore} from "../configaudit-reports-store";
-import {ClusterConfigAuditReport, ConfigAuditReport} from "../configaudit-report";
+import {clusterStore, store} from "./store";
+import {ClusterConfigAuditReport, ConfigAuditReport} from "./types";
 
 enum sortBy {
     name = "name",
@@ -17,7 +17,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
         return (
             <Renderer.Component.KubeObjectListLayout
                 tableId="ClusterConfigAuditReportsTable"
-                className="ConfigAuditReports" store={clusterConfigAuditReportsStore}
+                className="ConfigAuditReports" store={clusterStore}
                 sortingCallbacks={{
                     [sortBy.name]: (report: ClusterConfigAuditReport) => report.getName(),
                     [sortBy.danger]: (report: ClusterConfigAuditReport) => report.report.summary.dangerCount,
@@ -30,7 +30,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 renderHeaderTitle="ClusterConfigAuditReports"
                 renderTableHeader={[
                     {title: "Name", sortBy: sortBy.name},
-                    {title: "Scanner",},
+                    {title: "Scanner"},
                     {title: "Danger", sortBy: sortBy.danger},
                     {title: "Warning", sortBy: sortBy.warning},
                     {title: "Pass", sortBy: sortBy.pass},
@@ -53,7 +53,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
         return (
             <Renderer.Component.KubeObjectListLayout
                 tableId="ConfigAuditReportsTable"
-                className="ConfigAuditReports" store={configAuditReportsStore}
+                className="ConfigAuditReports" store={store}
                 sortingCallbacks={{
                     [sortBy.name]: (report: ConfigAuditReport) => report.getName(),
                     [sortBy.namespace]: (report: ConfigAuditReport) => report.metadata.namespace,

@@ -1,7 +1,7 @@
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
-import {configAuditReportsStore} from "../configaudit-reports-store";
-import {ConfigAuditReportDetails} from "./configaudit-report-details";
+import {store} from "../configauditreports/store";
+import {ConfigAuditReportDetails} from "../configauditreports/details";
 
 /*
  * This component is trying to lookup the ConfigAuditReport associated with the
@@ -18,7 +18,7 @@ export class WorkloadConfigAudit extends React.Component<Renderer.Component.Kube
             "starboard.resource.namespace=" + workload.getNs()
         ];
 
-        const configAuditReports = configAuditReportsStore.getByLabel(selector)
+        const configAuditReports = store.getByLabel(selector)
 
         return (
             <div>

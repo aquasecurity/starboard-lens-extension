@@ -1,6 +1,6 @@
 import React from "react"
-import {Check} from "../configaudit-report";
 import {ChecksList} from "./checks-list";
+import {Check} from "./types";
 
 interface Props {
     podChecks: Check[];

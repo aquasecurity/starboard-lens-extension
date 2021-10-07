@@ -1,13 +1,5 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react"
-import {ClusterConfigAuditReportPage, ConfigAuditReportPage} from "./src/components/configaudit-reports-list";
-import {ClusterConfigAuditReport, ConfigAuditReport} from "./src/configaudit-report";
-import {
-    ClusterConfigAuditReportDetails,
-    ClusterConfigAuditReportDetailsProps,
-    ConfigAuditReportDetails,
-    ConfigAuditReportDetailsProps
-} from "./src/components/configaudit-report-details";
 import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-list";
 import {CISKubeBenchReport} from "./src/ciskubebench-report";
 import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
@@ -23,6 +15,14 @@ import {
     VulnerabilityReportDetailsProps
 } from "./src/vulnerabilityreports/details";
 import {STARBOARD_API_VERSION} from "./src/starboard/constants";
+import {ClusterConfigAuditReport, ConfigAuditReport} from "./src/configauditreports/types";
+import {ClusterConfigAuditReportPage, ConfigAuditReportPage} from "./src/configauditreports/page";
+import {
+    ClusterConfigAuditReportDetails,
+    ClusterConfigAuditReportDetailsProps,
+    ConfigAuditReportDetails,
+    ConfigAuditReportDetailsProps
+} from "./src/configauditreports/details";
 
 export function CertificateIcon(props: Renderer.Component.IconProps) {
     return <Renderer.Component.Icon {...props} material="security"/>
