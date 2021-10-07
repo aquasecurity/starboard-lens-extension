@@ -12,7 +12,7 @@
 
 ## Installation
 
-This guide shows how to install the extension either from from pre-built binary releases or source.
+This guide shows how to install the extension either from pre-built binary releases or source.
 
 ### Prerequisites
 
@@ -26,6 +26,7 @@ The following matrix indicates versions of this extension and compatible Lens re
 
 | Lens | Extension |
 |------|-----------|
+| 5.2  | [0.2.0](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.2.0) |
 | 5.0  | [0.1.0](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.1.0) |
 | 4.0  | [0.0.2](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.0.2) |
 | 4.0  | [0.0.1](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.0.1) |
