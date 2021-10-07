@@ -23,6 +23,9 @@ import {
     ConfigAuditReportDetails,
     ConfigAuditReportDetailsProps
 } from "./src/configauditreports/details";
+import {KubeHunterReportsPage} from "./src/kubehunterreports/page";
+import {KubeHunterReport} from "./src/kubehunterreports/types";
+import {KubeHunterReportDetails, KubeHunterReportDetailsProps} from "./src/kubehunterreports/details";
 
 export function CertificateIcon(props: Renderer.Component.IconProps) {
     return <Renderer.Component.Icon {...props} material="security"/>
@@ -59,6 +62,12 @@ export default class StarboardExtension extends Renderer.LensExtension {
             id: "ciskubebenchreports",
             components: {
                 Page: () => <CISKubeBenchReportsList extension={this}/>
+            }
+        },
+        {
+            id: "kubehunterreports",
+            components: {
+                Page: () => <KubeHunterReportsPage extension={this}/>
             }
         }
     ]
@@ -107,6 +116,14 @@ export default class StarboardExtension extends Renderer.LensExtension {
             parentId: "starboard",
             target: {pageId: "ciskubebenchreports"},
             title: "CISKubeBenchReports",
+            components: {
+                Icon: CertificateIcon
+            }
+        },
+        {
+            parentId: "starboard",
+            target: {pageId: "kubehunterreports"},
+            title: "KubeHunterReports",
             components: {
                 Icon: CertificateIcon
             }
@@ -222,6 +239,14 @@ export default class StarboardExtension extends Renderer.LensExtension {
             apiVersions: [STARBOARD_API_VERSION],
             components: {
                 Details: (props: CISKubeBenchReportDetailsProps) => <CISKubeBenchReportDetails
+                    showObjectMeta {...props} />
+            }
+        },
+        {
+            kind: KubeHunterReport.kind,
+            apiVersions: [STARBOARD_API_VERSION],
+            components: {
+                Details: (props: KubeHunterReportDetailsProps) => <KubeHunterReportDetails
                     showObjectMeta {...props} />
             }
         }
