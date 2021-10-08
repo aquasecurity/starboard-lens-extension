@@ -1,7 +1,5 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react"
-import {WorkloadVulnerabilities} from "./src/components/workload-vulnerabilities";
-import {WorkloadConfigAudit} from "./src/components/workload-configaudit";
 import {ClusterVulnerabilityReportPage, VulnerabilityReportPage} from "./src/vulnerabilityreports/page";
 import {ClusterVulnerabilityReport, VulnerabilityReport} from "./src/vulnerabilityreports/types";
 import {
@@ -26,6 +24,8 @@ import {CISKubeBenchReportsPage} from "./src/ciskubebenchreports/page";
 import {CISKubeBenchReport} from "./src/ciskubebenchreports/types";
 import {NodeBenchmarks} from "./src/ciskubebenchreports/node-benchmarks";
 import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/ciskubebenchreports/details";
+import {WorkloadConfigAuditReports} from "./src/workloads/configauditreports";
+import {WorkloadVulnerabilityReports} from "./src/workloads/vulnerabilityreports";
 
 export function CertificateIcon(props: Renderer.Component.IconProps) {
     return <Renderer.Component.Icon {...props} material="security"/>
@@ -149,8 +149,8 @@ export default class StarboardExtension extends Renderer.LensExtension {
             components: {
                 Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
-                        <WorkloadConfigAudit {...props} />
-                        <WorkloadVulnerabilities {...props}/>
+                        <WorkloadConfigAuditReports {...props} />
+                        <WorkloadVulnerabilityReports {...props}/>
                     </React.Fragment>
             }
         },
@@ -161,8 +161,8 @@ export default class StarboardExtension extends Renderer.LensExtension {
             components: {
                 Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
-                        <WorkloadConfigAudit {...props} />
-                        <WorkloadVulnerabilities {...props}/>
+                        <WorkloadConfigAuditReports {...props} />
+                        <WorkloadVulnerabilityReports {...props}/>
                     </React.Fragment>
             }
         },
@@ -173,8 +173,8 @@ export default class StarboardExtension extends Renderer.LensExtension {
             components: {
                 Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
-                        <WorkloadConfigAudit {...props} />
-                        <WorkloadVulnerabilities {...props}/>
+                        <WorkloadConfigAuditReports {...props} />
+                        <WorkloadVulnerabilityReports {...props}/>
                     </React.Fragment>
             }
         },
@@ -185,8 +185,8 @@ export default class StarboardExtension extends Renderer.LensExtension {
             components: {
                 Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
-                        <WorkloadConfigAudit {...props} />
-                        <WorkloadVulnerabilities {...props}/>
+                        <WorkloadConfigAuditReports {...props} />
+                        <WorkloadVulnerabilityReports {...props}/>
                     </React.Fragment>
             }
         },
@@ -197,8 +197,8 @@ export default class StarboardExtension extends Renderer.LensExtension {
             components: {
                 Details: (props: Renderer.Component.KubeObjectDetailsProps) =>
                     <React.Fragment>
-                        <WorkloadConfigAudit {...props} />
-                        <WorkloadVulnerabilities {...props}/>
+                        <WorkloadConfigAuditReports {...props} />
+                        <WorkloadVulnerabilityReports {...props}/>
                     </React.Fragment>
             }
         },
