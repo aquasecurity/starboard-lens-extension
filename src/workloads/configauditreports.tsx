@@ -7,7 +7,7 @@ import {ConfigAuditReportDetails} from "../configauditreports/details";
  * This component is trying to lookup the ConfigAuditReport associated with the
  * specified Kubernetes workload and then render it.
  */
-export class WorkloadConfigAudit extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
+export class WorkloadConfigAuditReports extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
 
     render() {
         const {object: workload} = this.props;

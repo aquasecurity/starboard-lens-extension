@@ -1,6 +1,6 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {cisKubeBenchReportsStore} from "./store";
+import {store} from "./store";
 import {CISKubeBenchReport} from "./types";
 
 enum sortBy {
@@ -17,7 +17,7 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
         return (
             <Renderer.Component.KubeObjectListLayout
                 tableId="kubeBenchReportsTable"
-                className="CISKubeBenchReportsList" store={cisKubeBenchReportsStore}
+                className="CISKubeBenchReportsList" store={store}
                 sortingCallbacks={{
                     [sortBy.name]: (report: CISKubeBenchReport) => report.getName(),
                     [sortBy.fail]: (report: CISKubeBenchReport) => report.report.summary.failCount,

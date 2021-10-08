@@ -1,14 +1,14 @@
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
-import {cisKubeBenchReportsStore} from "../ciskubebenchreports/store";
-import {CISKubeBenchReportDetails} from "../ciskubebenchreports/details";
+import {store} from "./store";
+import {CISKubeBenchReportDetails} from "./details";
 
 export class NodeBenchmarks extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
 
     render() {
         const {object: node} = this.props;
 
-        const report = cisKubeBenchReportsStore.getByName(node.getName())
+        const report = store.getByName(node.getName())
 
         return (
             <div>
