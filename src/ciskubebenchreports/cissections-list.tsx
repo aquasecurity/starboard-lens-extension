@@ -1,6 +1,6 @@
 import React from "react";
-import {CISSection} from "../ciskubebench-report";
 import {CISResultsList} from "./cisresults-list";
+import {CISSection} from "./types";
 
 interface Props {
     sections: CISSection[];

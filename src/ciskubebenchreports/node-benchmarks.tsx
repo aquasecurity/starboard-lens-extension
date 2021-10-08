@@ -1,7 +1,7 @@
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
-import {cisKubeBenchReportsStore} from "../ciskubebench-reports-store";
-import {CISKubeBenchReportDetails} from "./ciskubebench-report-details";
+import {cisKubeBenchReportsStore} from "../ciskubebenchreports/store";
+import {CISKubeBenchReportDetails} from "../ciskubebenchreports/details";
 
 export class NodeBenchmarks extends React.Component<Renderer.Component.KubeObjectDetailsProps> {
 
