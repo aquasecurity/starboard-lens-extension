@@ -1,8 +1,8 @@
-import "./ciskubebench-report-details.scss";
+import "./details.scss";
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {CISKubeBenchReport} from "../ciskubebench-report";
 import {CISSectionsList} from "./cissections-list";
+import {CISKubeBenchReport} from "./types";
 
 export interface CISKubeBenchReportDetailsProps extends Renderer.Component.KubeObjectDetailsProps<CISKubeBenchReport> {
     showObjectMeta?: boolean

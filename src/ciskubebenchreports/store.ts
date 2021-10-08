@@ -1,5 +1,5 @@
 import {Renderer} from "@k8slens/extensions";
-import {CISKubeBenchReport} from "./ciskubebench-report";
+import {CISKubeBenchReport} from "./types";
 
 export class CISKubeBenchReportsApi extends Renderer.K8sApi.KubeApi<CISKubeBenchReport> {
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
-import {CISResult} from "../ciskubebench-report";
+import {CISResult} from "./types";
 
 interface Props {
     title: string;
@@ -13,10 +13,14 @@ export class CISResultsList extends React.Component<Props> {
         const {results} = this.props;
         return (
             <Renderer.Component.TableRow key={"" + index} nowrap>
-                <Renderer.Component.TableCell className="testStatus">{"" + results[index].status}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell className="testNumber">{results[index].test_number}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell className="testDescription">{results[index].test_desc}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell className="testScored">{"" + results[index].scored}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="testStatus">{"" + results[index].status}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="testNumber">{results[index].test_number}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="testDescription">{results[index].test_desc}</Renderer.Component.TableCell>
+                <Renderer.Component.TableCell
+                    className="testScored">{"" + results[index].scored}</Renderer.Component.TableCell>
             </Renderer.Component.TableRow>
         )
     }
@@ -31,7 +35,8 @@ export class CISResultsList extends React.Component<Props> {
                     <Renderer.Component.TableHead>
                         <Renderer.Component.TableCell className="testStatus">Status</Renderer.Component.TableCell>
                         <Renderer.Component.TableCell className="testNumber">Number</Renderer.Component.TableCell>
-                        <Renderer.Component.TableCell className="testDescription">Description</Renderer.Component.TableCell>
+                        <Renderer.Component.TableCell
+                            className="testDescription">Description</Renderer.Component.TableCell>
                         <Renderer.Component.TableCell className="testScored">Scored</Renderer.Component.TableCell>
                     </Renderer.Component.TableHead>
                     {

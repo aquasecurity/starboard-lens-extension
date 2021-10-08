@@ -1,7 +1,7 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {cisKubeBenchReportsStore} from "../ciskubebench-reports-store";
-import {CISKubeBenchReport} from "../ciskubebench-report";
+import {cisKubeBenchReportsStore} from "./store";
+import {CISKubeBenchReport} from "./types";
 
 enum sortBy {
     name = "name",
@@ -11,7 +11,7 @@ enum sortBy {
     warn = "warn",
 }
 
-export class CISKubeBenchReportsList extends React.Component<{ extension: Renderer.LensExtension }> {
+export class CISKubeBenchReportsPage extends React.Component<{ extension: Renderer.LensExtension }> {
 
     render() {
         return (

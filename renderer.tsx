@@ -1,11 +1,7 @@
 import {Renderer} from "@k8slens/extensions";
 import React from "react"
-import {CISKubeBenchReportsList} from "./src/components/ciskubebench-reports-list";
-import {CISKubeBenchReport} from "./src/ciskubebench-report";
-import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/components/ciskubebench-report-details";
 import {WorkloadVulnerabilities} from "./src/components/workload-vulnerabilities";
 import {WorkloadConfigAudit} from "./src/components/workload-configaudit";
-import {NodeBenchmarks} from "./src/components/node-benchmarks";
 import {ClusterVulnerabilityReportPage, VulnerabilityReportPage} from "./src/vulnerabilityreports/page";
 import {ClusterVulnerabilityReport, VulnerabilityReport} from "./src/vulnerabilityreports/types";
 import {
@@ -26,6 +22,10 @@ import {
 import {KubeHunterReportsPage} from "./src/kubehunterreports/page";
 import {KubeHunterReport} from "./src/kubehunterreports/types";
 import {KubeHunterReportDetails, KubeHunterReportDetailsProps} from "./src/kubehunterreports/details";
+import {CISKubeBenchReportsPage} from "./src/ciskubebenchreports/page";
+import {CISKubeBenchReport} from "./src/ciskubebenchreports/types";
+import {NodeBenchmarks} from "./src/ciskubebenchreports/node-benchmarks";
+import {CISKubeBenchReportDetails, CISKubeBenchReportDetailsProps} from "./src/ciskubebenchreports/details";
 
 export function CertificateIcon(props: Renderer.Component.IconProps) {
     return <Renderer.Component.Icon {...props} material="security"/>
@@ -61,7 +61,7 @@ export default class StarboardExtension extends Renderer.LensExtension {
         {
             id: "ciskubebenchreports",
             components: {
-                Page: () => <CISKubeBenchReportsList extension={this}/>
+                Page: () => <CISKubeBenchReportsPage extension={this}/>
             }
         },
         {
