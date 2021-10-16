@@ -1,8 +1,10 @@
 import {Renderer} from "@k8slens/extensions";
+import {Scanner} from "../starboard/types";
 
 export class Vulnerability {
     vulnerability: string;
     severity: string;
+    description: string;
     category: string;
     avd_reference: string;
 
@@ -26,30 +28,8 @@ export class KubeHunterReport extends Renderer.K8sApi.KubeObject {
     static namespaced = false
     static apiBase = "/apis/aquasecurity.github.io/v1alpha1/kubehunterreports"
 
-    kind: string
-    apiVersion: string
-
-    metadata: {
-        name: string;
-        namespace: string;
-        selfLink: string;
-        uid: string;
-        resourceVersion: string;
-        creationTimestamp: string;
-        labels: {
-            [key: string]: string;
-        };
-        annotations: {
-            [key: string]: string;
-        };
-    }
-
     report: {
-        scanner: {
-            name: string;
-            vendor: string;
-            version: string;
-        }
+        scanner: Scanner;
         summary: {
             highCount: number;
             mediumCount: number;
