@@ -4,6 +4,20 @@ import React from "react";
 import {KubeHunterReport, Vulnerability} from "./types";
 import styled from "@emotion/styled";
 
+const {
+    Component: {
+        KubeObjectMeta,
+        Table,
+        TableHead,
+        TableRow,
+        TableCell,
+        DrawerItem,
+        DrawerTitle,
+        Badge,
+    }
+} = Renderer;
+
+
 const Wrapper = styled.div`
   .Table.virtual {
       height: 500px;
@@ -28,15 +42,17 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
         let vulnID = vulnerability.getId();
 
         return (
-            <Renderer.Component.TableRow key={vulnID} nowrap sortItem={vulnerability}>
-                <Renderer.Component.TableCell className="vulnerabilityID">
+            <TableRow key={vulnID} nowrap sortItem={vulnerability}>
+                <TableCell className="vulnerabilityID">
                     <a target="_blank" href={vulnerability.avd_reference}>{vulnID}</a>
-                </Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="severity">{vulnerability.severity}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="category">{vulnerability.category}</Renderer.Component.TableCell>
-            </Renderer.Component.TableRow>
+                </TableCell>
+                <TableCell className="severity">{vulnerability.severity}</TableCell>
+                <TableCell className="description">
+                    <Badge flat expandable={false} key="description" label={vulnerability.description}
+                           tooltip={vulnerability.description}/>
+                </TableCell>
+                <TableCell className="category">{vulnerability.category}</TableCell>
+            </TableRow>
         );
     }
 
@@ -50,47 +66,42 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
         return (
             <div className="KubeHunterReportDetails">
                 {this.props.showObjectMeta &&
-                <Renderer.Component.KubeObjectMeta
-                    object={report}
-                    hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                <KubeObjectMeta object={report} hideFields={["uid", "resourceVersion", "selfLink"]}/>}
 
-                <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
-                    <Renderer.Component.Badge
-                        className="Badge theme-high"
-                        label={report.report.summary.highCount}
-                        tooltip="High"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-medium"
-                        label={report.report.summary.mediumCount}
-                        tooltip="Medium"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-low"
-                        label={report.report.summary.lowCount}
-                        tooltip="Low"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-unknown"
-                        label={report.report.summary.unknownCount}
-                        tooltip="Unknown"/>
-                </Renderer.Component.DrawerItem>
+                <DrawerItem name="Summary" className="summary" labelsOnly>
+                    <Badge className="Badge theme-high"
+                           label={report.report.summary.highCount}
+                           tooltip="High"/>
+                    <Badge className="Badge theme-medium"
+                           label={report.report.summary.mediumCount}
+                           tooltip="Medium"/>
+                    <Badge className="Badge theme-low"
+                           label={report.report.summary.lowCount}
+                           tooltip="Low"/>
+                    <Badge className="Badge theme-unknown"
+                           label={report.report.summary.unknownCount}
+                           tooltip="Unknown"/>
+                </DrawerItem>
 
-                <Renderer.Component.DrawerTitle title={"Vulnerabilities"}/>
+                <DrawerTitle title={"Vulnerabilities"}/>
 
                 <Wrapper>
-                    <Renderer.Component.Table
-                        tableId="kubeHunterVulnerabilitiesTable"
-                        virtual={virtual}
-                        items={vulnerabilities}
-                        getTableRow={this.getTableRow}
-                    >
-                        <Renderer.Component.TableHead>
-                            <Renderer.Component.TableCell className="vulnerabilityID">ID</Renderer.Component.TableCell>
-                            <Renderer.Component.TableCell className="severity">Severity</Renderer.Component.TableCell>
-                            <Renderer.Component.TableCell className="category">Category</Renderer.Component.TableCell>
-                        </Renderer.Component.TableHead>
+                    <Table selectable scrollable={false}
+                           tableId="kubeHunterVulnerabilitiesTable"
+                           virtual={virtual}
+                           items={vulnerabilities}
+                           getTableRow={this.getTableRow}>
+                        <TableHead>
+                            <TableCell className="vulnerabilityID">ID</TableCell>
+                            <TableCell className="severity">Severity</TableCell>
+                            <TableCell
+                                className="description">Description</TableCell>
+                            <TableCell className="category">Category</TableCell>
+                        </TableHead>
                         {
                             !virtual && vulnerabilities.map((vulnerability) => this.getTableRow(vulnerability.getId()))
                         }
-                    </Renderer.Component.Table>
+                    </Table>
                 </Wrapper>
 
             </div>
