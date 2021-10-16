@@ -16,6 +16,7 @@ export class CISTest {
 export class CISResult {
     test_number: string;
     test_desc: string;
+    remediation: string;
     status: string;
     scored: boolean;
 }

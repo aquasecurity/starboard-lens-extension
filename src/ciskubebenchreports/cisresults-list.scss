@@ -1,0 +1,14 @@
+.CISResultsList {
+
+  .TableCell {
+    &.number {
+      text-align: right;
+      flex-grow: 0.1;
+    }
+
+    &.status {
+      flex-grow: 0.2;
+    }
+  }
+
+}

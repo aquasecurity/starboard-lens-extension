@@ -1,6 +1,18 @@
+import "./cisresults-list.scss";
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
 import {CISResult} from "./types";
+
+const {
+    Component: {
+        Table,
+        TableHead,
+        TableRow,
+        TableCell,
+        DrawerTitle,
+        Badge,
+    }
+} = Renderer;
 
 interface Props {
     title: string;
@@ -9,19 +21,20 @@ interface Props {
 
 export class CISResultsList extends React.Component<Props> {
 
+    renderDescription(result: CISResult) {
+        return (
+            <Badge flat expandable={false} key="description" label={result.test_desc} tooltip={result.test_desc}/>
+        )
+    }
+
     getTableRow(index: number) {
         const {results} = this.props;
         return (
-            <Renderer.Component.TableRow key={"" + index} nowrap>
-                <Renderer.Component.TableCell
-                    className="testStatus">{"" + results[index].status}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="testNumber">{results[index].test_number}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="testDescription">{results[index].test_desc}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="testScored">{"" + results[index].scored}</Renderer.Component.TableCell>
-            </Renderer.Component.TableRow>
+            <TableRow key={"" + index} nowrap>
+                <TableCell className="number">{results[index].test_number}</TableCell>
+                <TableCell className="description">{this.renderDescription(results[index])}</TableCell>
+                <TableCell className="status">{results[index].status}</TableCell>
+            </TableRow>
         )
     }
 
@@ -29,20 +42,18 @@ export class CISResultsList extends React.Component<Props> {
         const {results, title} = this.props
 
         return (
-            <div>
-                <Renderer.Component.DrawerTitle title={title}/>
-                <Renderer.Component.Table className="box grow">
-                    <Renderer.Component.TableHead>
-                        <Renderer.Component.TableCell className="testStatus">Status</Renderer.Component.TableCell>
-                        <Renderer.Component.TableCell className="testNumber">Number</Renderer.Component.TableCell>
-                        <Renderer.Component.TableCell
-                            className="testDescription">Description</Renderer.Component.TableCell>
-                        <Renderer.Component.TableCell className="testScored">Scored</Renderer.Component.TableCell>
-                    </Renderer.Component.TableHead>
+            <div className="CISResultsList flex column">
+                <DrawerTitle title={title}/>
+                <Table selectable scrollable={false} className="box grow">
+                    <TableHead sticky={false}>
+                        <TableCell className="number">Number</TableCell>
+                        <TableCell className="description">Description</TableCell>
+                        <TableCell className="status">Status</TableCell>
+                    </TableHead>
                     {
                         results.map((result, index) => this.getTableRow(index))
                     }
-                </Renderer.Component.Table>
+                </Table>
             </div>
         )
     }
