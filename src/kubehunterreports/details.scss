@@ -1,5 +1,5 @@
 .KubeHunterReportDetails {
-  .summary {
+  .VulnerabilitySummary {
     .Badge {
       &.theme-high {
         color: white;
@@ -21,4 +21,34 @@
 
     }
   }
+
+  .VulnerabilityList {
+
+    .TableCell {
+      &.vulnerabilityID {
+        flex-grow: 0.4;
+      }
+
+      &.severity {
+        flex-grow: 0.2;
+      }
+
+      &.high {
+        color: #cc1814;
+      }
+
+      &.medium {
+        color: #ffa500;
+      }
+
+      &.low {
+        color: #515456;
+      }
+
+      &.category {
+        flex-grow: 0.3;
+      }
+    }
+  }
+
 }
