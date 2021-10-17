@@ -2,7 +2,6 @@ import "./details.scss"
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {KubeHunterReport, Vulnerability} from "./types";
-import styled from "@emotion/styled";
 
 const {
     Component: {
@@ -17,16 +16,6 @@ const {
     }
 } = Renderer;
 
-
-const Wrapper = styled.div`
-  .Table.virtual {
-      height: 500px;
-
-      .VirtualList {
-          height: 100%;
-      }
-  }
-`
 
 export interface KubeHunterReportDetailsProps extends Renderer.Component.KubeObjectDetailsProps<KubeHunterReport> {
     showObjectMeta?: boolean
@@ -46,7 +35,7 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
                 <TableCell className="vulnerabilityID">
                     <a target="_blank" href={vulnerability.avd_reference}>{vulnID}</a>
                 </TableCell>
-                <TableCell className="severity">{vulnerability.severity}</TableCell>
+                <TableCell className={"severity " + vulnerability.severity}>{vulnerability.severity}</TableCell>
                 <TableCell className="description">
                     <Badge flat expandable={false} key="description" label={vulnerability.description}
                            tooltip={vulnerability.description}/>
@@ -68,7 +57,7 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
                 {this.props.showObjectMeta &&
                 <KubeObjectMeta object={report} hideFields={["uid", "resourceVersion", "selfLink"]}/>}
 
-                <DrawerItem name="Summary" className="summary" labelsOnly>
+                <DrawerItem className="VulnerabilitySummary" name="Summary" labelsOnly>
                     <Badge className="Badge theme-high"
                            label={report.report.summary.highCount}
                            tooltip="High"/>
@@ -85,8 +74,8 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
 
                 <DrawerTitle title={"Vulnerabilities"}/>
 
-                <Wrapper>
-                    <Table selectable scrollable={false}
+                <div className="VulnerabilityList flex column">
+                    <Table className="box grow" selectable scrollable={false}
                            tableId="kubeHunterVulnerabilitiesTable"
                            virtual={virtual}
                            items={vulnerabilities}
@@ -94,15 +83,14 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
                         <TableHead>
                             <TableCell className="vulnerabilityID">ID</TableCell>
                             <TableCell className="severity">Severity</TableCell>
-                            <TableCell
-                                className="description">Description</TableCell>
+                            <TableCell className="description">Description</TableCell>
                             <TableCell className="category">Category</TableCell>
                         </TableHead>
                         {
-                            !virtual && vulnerabilities.map((vulnerability) => this.getTableRow(vulnerability.getId()))
+                            !virtual && vulnerabilities.map((vulnerability: Vulnerability) => this.getTableRow(vulnerability.getId()))
                         }
                     </Table>
-                </Wrapper>
+                </div>
 
             </div>
         )
