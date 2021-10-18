@@ -1,14 +1,21 @@
 .CISResultsList {
 
-  .TableCell {
-    &.number {
-      text-align: right;
-      flex-grow: 0.1;
+  .CISResultsTable {
+
+    margin-left: -24px;
+    margin-right: -24px;
+
+    .TableCell {
+      &.number {
+        text-align: right;
+        flex-grow: 0.1;
+      }
+
+      &.status {
+        flex-grow: 0.2;
+      }
     }
 
-    &.status {
-      flex-grow: 0.2;
-    }
   }
 
 }
