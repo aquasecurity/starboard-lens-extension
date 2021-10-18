@@ -74,8 +74,8 @@ export class KubeHunterReportDetails extends React.Component<KubeHunterReportDet
 
                 <DrawerTitle title={"Vulnerabilities"}/>
 
-                <div className="VulnerabilityList flex column">
-                    <Table className="box grow" selectable scrollable={false}
+                <div className="flex column">
+                    <Table className="VulnerabilityTable box grow" selectable scrollable={false}
                            tableId="kubeHunterVulnerabilitiesTable"
                            virtual={virtual}
                            items={vulnerabilities}

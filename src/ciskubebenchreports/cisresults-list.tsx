@@ -44,7 +44,7 @@ export class CISResultsList extends React.Component<Props> {
         return (
             <div className="CISResultsList flex column">
                 <DrawerTitle title={title}/>
-                <Table selectable scrollable={false} className="box grow">
+                <Table selectable scrollable={false} className="CISResultsTable box grow">
                     <TableHead sticky={false}>
                         <TableCell className="number">Number</TableCell>
                         <TableCell className="description">Description</TableCell>
