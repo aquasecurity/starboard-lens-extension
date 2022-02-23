@@ -17,15 +17,15 @@ This guide shows how to install the extension either from pre-built binary relea
 ### Prerequisites
 
 * Lens >= [4.0][min-lens] should first be [installed][lens-installation].
-* Follow Starboard [Getting Started][starboard-getting-started] guide to understand how Starboard is
-  initialized and how it generates security reports, which are then stored as custom resources.
+* Follow Starboard [Getting Started] guide to understand how Starboard is initialized and how it generates security
+  reports, which are then stored as custom resources.
 
 ### Compatibility Matrix
 
 The following matrix indicates versions of this extension and compatible Lens releases.
 
-| Lens | Extension |
-|------|-----------|
+| Lens | Extension                                                                             |
+|------|---------------------------------------------------------------------------------------|
 | 5.2  | [0.2.0](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.2.0) |
 | 5.0  | [0.1.0](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.1.0) |
 | 4.0  | [0.0.2](https://github.com/aquasecurity/starboard-lens-extension/releases/tag/v0.0.2) |
@@ -54,19 +54,27 @@ downloaded and installed. Alternatively, you can copy the download URL of the re
 Building from source is slightly more involved, but it's the best way to go if you want to test the latest (pre-release)
 version of the extension.
 
-You must have a working Node.js environment.
+You must have a working [Node.js] environment.
 
-1. Clone the source code to the `~/.k8slens/extensions/starboard-lens-extensions` directory and build the extension's package:
+1. Clone the source code:
    ```
-   $ mkdir -p ~/.k8slens/extensions
-   $ git clone https://github.com/aquasecurity/starboard-lens-extension.git ~/.k8slens/extensions/starboard-lens-extension
-   $ cd ~/.k8slens/extensions/starboard-lens-extensions
-   $ npm install && npm run build
+   git clone https://github.com/aquasecurity/starboard-lens-extension.git
+   cd starboard-lens-extensions
    ```
-2. Open Lens application and select **Lens** menu, and then click **Extensions** item, or press
+2. Build the extension's package:
+   ```
+   npm install && npm run build
+   ```
+3. Create a tarball from a package:
+   ```
+   npm pack
+   ```
+   This will create the `aquasecurity-starboard-lens-extension-$VERSION.tgz` tarball in the root directory.
+4. Open Lens application and select **Lens** menu, and then click **Extensions** item, or press
    <kbd>Shift</kbd> + <kbd>Command</kbd> + <kbd>E</kbd> to open the **Manage Lens Extensions** page.
-3. If everything goes fine, you'll see the `@aquasecurity/starboard-lens-extension` extension listed under
-   **Installed Extensions**. Click **Enable** to enable it.
+5. Specify the path the `aquasecurity-starboard-lens-extension-$VERSION.tgz` extension package and click **Install**.
+6. If everything goes fine, you'll see the `@aquasecurity/starboard-lens-extension` extension listed under
+   **Installed Extensions**.
    ![](docs/images/extensions-ui-enable.png)
 
 ## Getting Started
@@ -85,7 +93,7 @@ You must have a working Node.js environment.
 [lens]: https://github.com/lensapp/lens
 [starboard]: https://github.com/aquasecurity/starboard
 [starboard-crds]: https://aquasecurity.github.io/starboard/latest/crds/
-[starboard-getting-started]: https://github.com/aquasecurity/starboard#getting-started
+[Getting Started]: https://aquasecurity.github.io/starboard/latest/operator/getting-started/
 
 [lens-installation]: https://github.com/lensapp/lens#installation
 [lens-releases]: https://github.com/lensapp/lens/releases
@@ -99,3 +107,4 @@ You must have a working Node.js environment.
 [license-img]: https://img.shields.io/github/license/aquasecurity/starboard-lens-extension
 
 [min-lens]: https://github.com/lensapp/lens/releases/tag/v4.0.0
+[Node.js]: https://nodejs.org/en/download/

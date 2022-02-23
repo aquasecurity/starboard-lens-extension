@@ -2,3 +2,5 @@ node_modules/
 dist/
 
 .idea/
+
+aquasecurity-starboard-lens-extension-*.tgz
