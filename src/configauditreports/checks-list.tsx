@@ -26,7 +26,7 @@ export class ChecksList extends React.Component<Props> {
 
     render() {
         const {checks, title} = this.props
-        if (!checks.length) {
+        if (!checks || !checks.length) {
             return null;
         }
 
