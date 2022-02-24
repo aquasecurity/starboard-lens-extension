@@ -17,27 +17,29 @@ export class ClusterConfigAuditReportDetails extends React.Component<ClusterConf
         return (
             <div className="ConfigAuditReportDetails">
                 {this.props.showObjectMeta &&
-                <Renderer.Component.KubeObjectMeta
-                    object={report}
-                    hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                    <Renderer.Component.KubeObjectMeta
+                        object={report}
+                        hideFields={["uid", "resourceVersion", "selfLink"]}/>}
                 <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
                     <Renderer.Component.Badge
-                        className="Badge theme-danger"
-                        label={summary.dangerCount}
-                        tooltip="Danger"/>
+                        className="Badge theme-critical"
+                        label={summary.criticalCount}
+                        tooltip="Critical"/>
                     <Renderer.Component.Badge
-                        className="Badge theme-warning"
-                        label={summary.warningCount}
-                        tooltip="Warning"/>
+                        className="Badge theme-high"
+                        label={summary.highCount}
+                        tooltip="High"/>
                     <Renderer.Component.Badge
-                        className="Badge theme-pass"
-                        label={summary.passCount}
-                        tooltip="Pass"/>
+                        className="Badge theme-medium"
+                        label={summary.mediumCount}
+                        tooltip="Medium"/>
+                    <Renderer.Component.Badge
+                        className="Badge theme-low"
+                        label={summary.lowCount}
+                        tooltip="Low"/>
                 </Renderer.Component.DrawerItem>
 
-                <ConfigAuditChecksList
-                    podChecks={report.report.podChecks}
-                    containerChecks={report.report.containerChecks}/>
+                <ConfigAuditChecksList checks={report.report.checks}/>
             </div>
         )
     }
@@ -63,27 +65,29 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
         return (
             <div className="ConfigAuditReportDetails">
                 {this.props.showObjectMeta &&
-                <Renderer.Component.KubeObjectMeta
-                    object={report}
-                    hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                    <Renderer.Component.KubeObjectMeta
+                        object={report}
+                        hideFields={["uid", "resourceVersion", "selfLink"]}/>}
                 <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
                     <Renderer.Component.Badge
-                        className="Badge theme-danger"
-                        label={summary.dangerCount}
-                        tooltip="Danger"/>
+                        className="Badge theme-critical"
+                        label={summary.criticalCount}
+                        tooltip="Critical"/>
                     <Renderer.Component.Badge
-                        className="Badge theme-warning"
-                        label={summary.warningCount}
-                        tooltip="Warning"/>
+                        className="Badge theme-high"
+                        label={summary.highCount}
+                        tooltip="High"/>
                     <Renderer.Component.Badge
-                        className="Badge theme-pass"
-                        label={summary.passCount}
-                        tooltip="Pass"/>
+                        className="Badge theme-medium"
+                        label={summary.mediumCount}
+                        tooltip="Medium"/>
+                    <Renderer.Component.Badge
+                        className="Badge theme-low"
+                        label={summary.lowCount}
+                        tooltip="Low"/>
                 </Renderer.Component.DrawerItem>
 
-                <ConfigAuditChecksList
-                    podChecks={report.report.podChecks}
-                    containerChecks={report.report.containerChecks}/>
+                <ConfigAuditChecksList checks={report.report.checks} />
             </div>
         )
     }

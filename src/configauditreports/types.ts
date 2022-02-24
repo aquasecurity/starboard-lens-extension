@@ -1,11 +1,21 @@
 import {Renderer} from "@k8slens/extensions";
+import {Scanner} from "../starboard/types";
 
 export class Check {
     checkID: string;
+    title: string;
+    description: string;
     message: string;
     success: boolean;
     severity: string;
     category: string
+}
+
+export class Summary {
+    criticalCount: number;
+    highCount: number;
+    mediumCount: number;
+    lowCount: number;
 }
 
 export class ClusterConfigAuditReport extends Renderer.K8sApi.KubeObject {
@@ -31,22 +41,7 @@ export class ClusterConfigAuditReport extends Renderer.K8sApi.KubeObject {
         };
     }
 
-    report: {
-        scanner: {
-            name: string;
-            vendor: string;
-            version: string;
-        }
-        summary: {
-            passCount?: number;
-            dangerCount: number;
-            warningCount: number;
-        }
-        podChecks: Check[]
-        containerChecks: {
-            [key: string]: Check[]
-        }
-    }
+    report: ConfigAuditReportData;
 
 }
 
@@ -72,20 +67,11 @@ export class ConfigAuditReport extends Renderer.K8sApi.KubeObject {
         };
     }
 
-    report: {
-        scanner: {
-            name: string;
-            vendor: string;
-            version: string;
-        }
-        summary: {
-            passCount?: number;
-            dangerCount: number;
-            warningCount: number;
-        }
-        podChecks: Check[]
-        containerChecks: {
-            [key: string]: Check[]
-        }
-    }
+    report: ConfigAuditReportData;
+}
+
+export type ConfigAuditReportData = {
+    scanner: Scanner
+    summary: Summary
+    checks: Check[]
 }
