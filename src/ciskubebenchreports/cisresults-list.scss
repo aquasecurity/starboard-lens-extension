@@ -14,6 +14,28 @@
       &.status {
         flex-grow: 0.2;
       }
+
+      .Badge {
+        &.status-FAIL {
+          color: white;
+          background-color: #cc1814;
+        }
+
+        &.status-WARN {
+          color: white;
+          background-color: #ffa500;
+        }
+
+        &.status-INFO {
+          color: white;
+          background-color: #515456;
+        }
+
+        &.status-PASS {
+          color: white;
+          background-color: #00b09b;
+        }
+      }
     }
 
   }
