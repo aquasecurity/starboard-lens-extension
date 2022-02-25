@@ -12,23 +12,24 @@ export class Check {
     message: string;
     success: boolean;
     severity: string;
-    category: string
+    category: string;
+
+    constructor(params: Check) {
+        Object.entries(params).forEach(([key, value]) => {
+            Object.assign(this, {[key]: value})
+        });
+    }
+
+    getId() {
+        return this.checkID
+    }
 }
 
 export type ConfigAuditReportData = {
     updateTimestamp: string;
-
     scanner: Scanner
     summary: Summary
     checks: Check[]
-
-    // Deprecated
-    podChecks: Check[]
-
-    // Deprecated
-    containerChecks: {
-        [key: string]: Check[]
-    }
 }
 
 export class ClusterConfigAuditReport extends Renderer.K8sApi.KubeObject {

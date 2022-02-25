@@ -1,0 +1,61 @@
+.ChecksList {
+
+  .Table {
+    margin-top: 24px;
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  .Table.virtual {
+    height: 500px;
+
+    .VirtualList {
+      height: 100%;
+    }
+  }
+
+  .Table {
+    .Badge {
+      &.severity-CRITICAL {
+        color: white;
+        background-color: #cc1814;
+      }
+
+      &.severity-danger {
+        color: white;
+        background-color: #cc1814;
+      }
+
+      &.severity-HIGH {
+        color: white;
+        background-color: #ffa500;
+      }
+
+      &.severity-warning {
+        color: white;
+        background-color: #ffa500;
+      }
+
+      &.severity-MEDIUM {
+        color: white;
+        background-color: #f0c20c;
+      }
+
+      &.severity-LOW {
+        color: white;
+        background-color: #096ab0;
+      }
+
+      &.status-PASS {
+        color: white;
+        background-color: #00b09b;
+      }
+
+      &.status-FAIL {
+        color: white;
+        background-color: #cc1814;
+      }
+    }
+  }
+
+}
