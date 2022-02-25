@@ -1,4 +1,11 @@
 import {Renderer} from "@k8slens/extensions";
+import {Scanner} from "../starboard/types";
+
+export type Summary = {
+    passCount?: number;
+    dangerCount: number;
+    warningCount: number;
+}
 
 export class Check {
     checkID: string;
@@ -8,45 +15,28 @@ export class Check {
     category: string
 }
 
+export type ConfigAuditReportData = {
+    updateTimestamp: string;
+
+    scanner: Scanner
+    summary: Summary
+    checks: Check[]
+
+    // Deprecated
+    podChecks: Check[]
+
+    // Deprecated
+    containerChecks: {
+        [key: string]: Check[]
+    }
+}
+
 export class ClusterConfigAuditReport extends Renderer.K8sApi.KubeObject {
     static kind = "ClusterConfigAuditReport"
     static namespaced = false
     static apiBase = "/apis/aquasecurity.github.io/v1alpha1/clusterconfigauditreports"
 
-    kind: string
-    apiVersion: string
-
-    metadata: {
-        name: string;
-        namespace: string;
-        selfLink: string;
-        uid: string;
-        resourceVersion: string;
-        creationTimestamp: string;
-        labels: {
-            [key: string]: string;
-        };
-        annotations: {
-            [key: string]: string;
-        };
-    }
-
-    report: {
-        scanner: {
-            name: string;
-            vendor: string;
-            version: string;
-        }
-        summary: {
-            passCount?: number;
-            dangerCount: number;
-            warningCount: number;
-        }
-        podChecks: Check[]
-        containerChecks: {
-            [key: string]: Check[]
-        }
-    }
+    report: ConfigAuditReportData
 
 }
 
@@ -55,37 +45,5 @@ export class ConfigAuditReport extends Renderer.K8sApi.KubeObject {
     static namespaced = true
     static apiBase = "/apis/aquasecurity.github.io/v1alpha1/configauditreports"
 
-    kind: string
-    apiVersion: string
-    metadata: {
-        name: string;
-        namespace: string;
-        selfLink: string;
-        uid: string;
-        resourceVersion: string;
-        creationTimestamp: string;
-        labels: {
-            [key: string]: string;
-        };
-        annotations: {
-            [key: string]: string;
-        };
-    }
-
-    report: {
-        scanner: {
-            name: string;
-            vendor: string;
-            version: string;
-        }
-        summary: {
-            passCount?: number;
-            dangerCount: number;
-            warningCount: number;
-        }
-        podChecks: Check[]
-        containerChecks: {
-            [key: string]: Check[]
-        }
-    }
+    report: ConfigAuditReportData
 }
