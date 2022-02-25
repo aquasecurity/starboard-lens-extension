@@ -6,7 +6,6 @@ import {CISResult} from "./types";
 const {
     Component: {
         Table,
-        TableHead,
         TableRow,
         TableCell,
         DrawerTitle,
@@ -33,7 +32,9 @@ export class CISResultsList extends React.Component<Props> {
             <TableRow key={"" + index} nowrap>
                 <TableCell className="number">{results[index].test_number}</TableCell>
                 <TableCell className="description">{this.renderDescription(results[index])}</TableCell>
-                <TableCell className="status">{results[index].status}</TableCell>
+                <TableCell className="status">
+                    <Badge className={"Badge status-" + results[index].status} small label={results[index].status}/>
+                </TableCell>
             </TableRow>
         )
     }
@@ -45,11 +46,6 @@ export class CISResultsList extends React.Component<Props> {
             <div className="CISResultsList flex column">
                 <DrawerTitle title={title}/>
                 <Table selectable scrollable={false} className="CISResultsTable box grow">
-                    <TableHead sticky={false}>
-                        <TableCell className="number">Number</TableCell>
-                        <TableCell className="description">Description</TableCell>
-                        <TableCell className="status">Status</TableCell>
-                    </TableHead>
                     {
                         results.map((result, index) => this.getTableRow(index))
                     }

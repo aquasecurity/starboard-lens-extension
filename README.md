@@ -85,10 +85,14 @@ You must have a working [Node.js] environment.
 - VulnerabilityReports
 
   ![](./docs/images/lens_vulnerability_report.png)
+
+  ![](./docs/images/lens_workload_vulnerabilities.png)
 - ConfigAuditReports
 
   ![](./docs/images/lens_configaudit_report.png)
 - CISKubeBenchReports
+
+  ![](./docs/images/lens_ciskubebench_report.png)
 
 [lens]: https://github.com/lensapp/lens
 [starboard]: https://github.com/aquasecurity/starboard
