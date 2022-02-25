@@ -7,12 +7,13 @@
 
     .TableCell {
       &.number {
-        text-align: right;
+        text-align: left;
         flex-grow: 0.1;
       }
 
       &.status {
-        flex-grow: 0.2;
+        text-align: right;
+        flex-grow: 0.1;
       }
 
       .Badge {

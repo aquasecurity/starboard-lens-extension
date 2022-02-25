@@ -69,6 +69,7 @@ export class ChecksList extends React.Component<Props> {
         return (
             <div className="ChecksList">
                 <Table tableId="configurationChecksTable"
+                       selectable
                        virtual={virtual}
                        items={sorted}
                        getTableRow={this.getTableRow}
