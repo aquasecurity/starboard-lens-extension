@@ -1,62 +1,88 @@
+import "./checks-list.scss";
 import React from "react";
 import {Renderer} from "@k8slens/extensions";
 import {Check} from "./types";
 
+const {
+    Component: {
+        Table,
+        TableHead,
+        TableRow,
+        TableCell,
+        Badge,
+    }
+} = Renderer;
+
 interface Props {
-    title: string;
     checks: Check[];
+}
+
+const severityOrder = new Map([
+    ["CRITICAL", 0],
+    ["HIGH", 1],
+    ["danger", 2],
+    ["MEDIUM", 3],
+    ["warning", 4],
+    ["LOW", 5],
+    ["UNKNOWN", 6],
+])
+
+const BySeverity = (v1: Check, v2: Check) => {
+    return severityOrder.get(v1.severity) - severityOrder.get(v2.severity)
 }
 
 export class ChecksList extends React.Component<Props> {
 
-    getTableRow(index: number) {
+    getTableRow = (uid: string) => {
         const {checks} = this.props;
+        const check = checks.find(item => item.checkID == uid);
+        let status = 'PASS'
+        if (check.success) {
+            status = 'FAIL'
+        }
         return (
-            <Renderer.Component.TableRow key={checks[index].checkID} nowrap>
-                <Renderer.Component.TableCell
-                    className="checkSuccess">{"" + checks[index].success}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell className="checkID">{checks[index].checkID}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="checkSeverity">{checks[index].severity}</Renderer.Component.TableCell>
-                <Renderer.Component.TableCell
-                    className="checkCategory">{checks[index].category}</Renderer.Component.TableCell>
-            </Renderer.Component.TableRow>
+            <TableRow key={check.checkID} nowrap>
+                <TableCell className="checkID">{check.checkID}</TableCell>
+                <TableCell className="checkSeverity">
+                    <Badge className={"Badge severity-" + check.severity} small label={check.severity}/>
+                </TableCell>
+                <TableCell className="checkCategory">
+                    <Badge flat expandable={false} key="imageRef" label={check.message}
+                           tooltip={check.message}/>
+                </TableCell>
+                <TableCell>
+                    <Badge className={"Badge status-" + status} small label={status}/>
+                </TableCell>
+            </TableRow>
         )
     }
 
     render() {
-        const {checks, title} = this.props
+        const {checks} = this.props
         if (!checks || !checks.length) {
             return null;
         }
 
+        const virtual = checks.length > 50;
+        const sorted = checks.sort(BySeverity)
+
         return (
-            <div className="PodDetailsContainer">
-                {1 === 1 &&
-                <div className="pod-container-title">
-                    <Renderer.Component.StatusBrick
-                        className="error"/>{title}
-                </div>}
-
-                <Renderer.Component.DrawerItem name="Checks">
-                    <Renderer.Component.DrawerParamToggler label={checks.length}>
-                        <Renderer.Component.Table>
-                            <Renderer.Component.TableHead>
-                                <Renderer.Component.TableCell
-                                    className="checkSuccess">Success</Renderer.Component.TableCell>
-                                <Renderer.Component.TableCell className="checkID">ID</Renderer.Component.TableCell>
-                                <Renderer.Component.TableCell
-                                    className="checkSeverity">Severity</Renderer.Component.TableCell>
-                                <Renderer.Component.TableCell
-                                    className="checkCategory">Category</Renderer.Component.TableCell>
-                            </Renderer.Component.TableHead>
-                            {
-                                checks.map((check, index) => this.getTableRow(index))
-                            }
-                        </Renderer.Component.Table>
-                    </Renderer.Component.DrawerParamToggler>
-                </Renderer.Component.DrawerItem>
-
+            <div className="ChecksList">
+                <Table tableId="configurationChecksTable"
+                       virtual={virtual}
+                       items={sorted}
+                       getTableRow={this.getTableRow}
+                >
+                    <TableHead>
+                        <TableCell className="checkID">ID</TableCell>
+                        <TableCell className="checkSeverity">Severity</TableCell>
+                        <TableCell className="checkCategory">Message</TableCell>
+                        <TableCell className="checkSuccess">Status</TableCell>
+                    </TableHead>
+                    {
+                        !virtual && sorted.map((check: Check) => this.getTableRow(check.getId()))
+                    }
+                </Table>
             </div>
         )
     }

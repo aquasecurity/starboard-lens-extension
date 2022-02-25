@@ -1,8 +1,16 @@
 import "./details.scss";
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
-import {ConfigAuditChecksList} from "./configaudit-checks-list";
-import {ClusterConfigAuditReport, ConfigAuditReport} from "./types";
+import {Check, ClusterConfigAuditReport, ConfigAuditReport} from "./types";
+import {ChecksList} from "./checks-list";
+
+const {
+    Component: {
+        KubeObjectMeta,
+        DrawerItem,
+        Badge,
+    }
+} = Renderer;
 
 export interface ClusterConfigAuditReportDetailsProps extends Renderer.Component.KubeObjectDetailsProps<ClusterConfigAuditReport> {
     showObjectMeta?: boolean
@@ -12,32 +20,30 @@ export class ClusterConfigAuditReportDetails extends React.Component<ClusterConf
 
     render() {
         const {object: report} = this.props;
+        const {report: {checks: items}} = report;
+
+        const checks = items.map((check: Check) => new Check(check))
+
         if (!report) return null;
         const summary = report.report.summary;
         return (
             <div className="ConfigAuditReportDetails">
                 {this.props.showObjectMeta &&
-                <Renderer.Component.KubeObjectMeta
-                    object={report}
-                    hideFields={["uid", "resourceVersion", "selfLink"]}/>}
-                <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
-                    <Renderer.Component.Badge
-                        className="Badge theme-danger"
-                        label={summary.dangerCount}
-                        tooltip="Danger"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-warning"
-                        label={summary.warningCount}
-                        tooltip="Warning"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-pass"
-                        label={summary.passCount}
-                        tooltip="Pass"/>
-                </Renderer.Component.DrawerItem>
-
-                <ConfigAuditChecksList
-                    podChecks={report.report.podChecks}
-                    containerChecks={report.report.containerChecks}/>
+                    <KubeObjectMeta
+                        object={report}
+                        hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                <DrawerItem name="Summary" className="summary" labelsOnly>
+                    <Badge className="Badge theme-danger"
+                           label={summary.dangerCount}
+                           tooltip="Danger"/>
+                    <Badge className="Badge theme-warning"
+                           label={summary.warningCount}
+                           tooltip="Warning"/>
+                    <Badge className="Badge theme-pass"
+                           label={summary.passCount}
+                           tooltip="Pass"/>
+                </DrawerItem>
+                <ChecksList checks={checks}/>
             </div>
         )
     }
@@ -58,32 +64,30 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
 
     render() {
         const {object: report} = this.props;
+        const {report: {checks: items}} = report;
+
+        const checks = items.map((check: Check) => new Check(check))
+
         if (!report) return null;
         const summary = report.report.summary;
         return (
             <div className="ConfigAuditReportDetails">
                 {this.props.showObjectMeta &&
-                <Renderer.Component.KubeObjectMeta
-                    object={report}
-                    hideFields={["uid", "resourceVersion", "selfLink"]}/>}
-                <Renderer.Component.DrawerItem name="Summary" className="summary" labelsOnly>
-                    <Renderer.Component.Badge
-                        className="Badge theme-danger"
-                        label={summary.dangerCount}
-                        tooltip="Danger"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-warning"
-                        label={summary.warningCount}
-                        tooltip="Warning"/>
-                    <Renderer.Component.Badge
-                        className="Badge theme-pass"
-                        label={summary.passCount}
-                        tooltip="Pass"/>
-                </Renderer.Component.DrawerItem>
-
-                <ConfigAuditChecksList
-                    podChecks={report.report.podChecks}
-                    containerChecks={report.report.containerChecks}/>
+                    <KubeObjectMeta
+                        object={report}
+                        hideFields={["uid", "resourceVersion", "selfLink"]}/>}
+                <DrawerItem name="Summary" className="summary" labelsOnly>
+                    <Badge className="Badge theme-danger"
+                           label={summary.dangerCount}
+                           tooltip="Danger"/>
+                    <Badge className="Badge theme-warning"
+                           label={summary.warningCount}
+                           tooltip="Warning"/>
+                    <Badge className="Badge theme-pass"
+                           label={summary.passCount}
+                           tooltip="Pass"/>
+                </DrawerItem>
+                <ChecksList checks={checks}/>
             </div>
         )
     }
