@@ -8,13 +8,11 @@ const {
         Table,
         TableRow,
         TableCell,
-        DrawerTitle,
         Badge,
     }
 } = Renderer;
 
 interface Props {
-    title: string;
     results: CISResult[];
 }
 
@@ -40,11 +38,10 @@ export class CISResultsList extends React.Component<Props> {
     }
 
     render() {
-        const {results, title} = this.props
+        const {results} = this.props
 
         return (
             <div className="CISResultsList flex column">
-                <DrawerTitle title={title}/>
                 <Table selectable scrollable={false} className="CISResultsTable box grow">
                     {
                         results.map((result, index) => this.getTableRow(index))
