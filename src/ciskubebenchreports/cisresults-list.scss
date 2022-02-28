@@ -7,12 +7,12 @@
 
     .TableCell {
       &.number {
-        text-align: left;
+        text-align: right;
         flex-grow: 0.1;
       }
 
       &.status {
-        text-align: right;
+        text-align: center;
         flex-grow: 0.1;
       }
 
