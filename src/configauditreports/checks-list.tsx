@@ -37,20 +37,21 @@ export class ChecksList extends React.Component<Props> {
         const {checks} = this.props;
         const check = checks.find(item => item.checkID == uid);
         let status = 'PASS'
-        if (check.success) {
+        if (!check.success) {
             status = 'FAIL'
         }
         return (
             <TableRow key={check.checkID} nowrap>
-                <TableCell className="checkID">{check.checkID}</TableCell>
-                <TableCell className="checkSeverity">
+                <TableCell className="checkID">
+                    <Badge flat expandable={false} label={check.checkID} tooltip={check.checkID}/>
+                </TableCell>
+                <TableCell className="severity">
                     <Badge className={"Badge severity-" + check.severity} small label={check.severity}/>
                 </TableCell>
-                <TableCell className="checkCategory">
-                    <Badge flat expandable={false} key="imageRef" label={check.message}
-                           tooltip={check.message}/>
+                <TableCell className="message">
+                    <Badge flat expandable={false} label={check.message} tooltip={check.message}/>
                 </TableCell>
-                <TableCell>
+                <TableCell className="status">
                     <Badge className={"Badge status-" + status} small label={status}/>
                 </TableCell>
             </TableRow>
@@ -67,8 +68,9 @@ export class ChecksList extends React.Component<Props> {
         const sorted = checks.sort(BySeverity)
 
         return (
-            <div className="ChecksList">
-                <Table tableId="configurationChecksTable"
+            <div className="ChecksList flex column">
+                <Table className="box grow"
+                       tableId="configurationChecksTable"
                        selectable
                        virtual={virtual}
                        items={sorted}
@@ -76,9 +78,9 @@ export class ChecksList extends React.Component<Props> {
                 >
                     <TableHead>
                         <TableCell className="checkID">ID</TableCell>
-                        <TableCell className="checkSeverity">Severity</TableCell>
-                        <TableCell className="checkCategory">Message</TableCell>
-                        <TableCell className="checkSuccess">Status</TableCell>
+                        <TableCell className="severity">Severity</TableCell>
+                        <TableCell className="message">Message</TableCell>
+                        <TableCell className="status">Status</TableCell>
                     </TableHead>
                     {
                         !virtual && sorted.map((check: Check) => this.getTableRow(check.getId()))

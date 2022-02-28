@@ -29,10 +29,10 @@ export class CISResultsList extends React.Component<Props> {
         return (
             <TableRow key={"" + index} nowrap>
                 <TableCell className="number">{results[index].test_number}</TableCell>
-                <TableCell className="description">{this.renderDescription(results[index])}</TableCell>
                 <TableCell className="status">
                     <Badge className={"Badge status-" + results[index].status} small label={results[index].status}/>
                 </TableCell>
+                <TableCell className="description">{this.renderDescription(results[index])}</TableCell>
             </TableRow>
         )
     }
