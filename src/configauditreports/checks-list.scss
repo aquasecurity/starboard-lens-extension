@@ -15,45 +15,65 @@
   }
 
   .Table {
-    .Badge {
-      &.severity-CRITICAL {
-        color: white;
-        background-color: #cc1814;
+    .TableCell {
+      &.checkID {
+        text-align: left;
+        flex-grow: 0.15;
+      }
+      &.severity {
+        text-align: center;
+        flex-grow: 0.1;
+      }
+      &.message {
+        text-align: left;
+        flex-grow: 0.65;
       }
 
-      &.severity-danger {
-        color: white;
-        background-color: #cc1814;
+      &.status {
+        text-align: center;
+        flex-grow: 0.1;
       }
 
-      &.severity-HIGH {
-        color: white;
-        background-color: #ffa500;
-      }
+      .Badge {
+        &.severity-CRITICAL {
+          color: white;
+          background-color: #cc1814;
+        }
 
-      &.severity-warning {
-        color: white;
-        background-color: #ffa500;
-      }
+        &.severity-danger {
+          color: white;
+          background-color: #cc1814;
+        }
 
-      &.severity-MEDIUM {
-        color: white;
-        background-color: #f0c20c;
-      }
+        &.severity-HIGH {
+          color: white;
+          background-color: #ffa500;
+        }
 
-      &.severity-LOW {
-        color: white;
-        background-color: #096ab0;
-      }
+        &.severity-warning {
+          color: white;
+          background-color: #ffa500;
+        }
 
-      &.status-PASS {
-        color: white;
-        background-color: #00b09b;
-      }
+        &.severity-MEDIUM {
+          color: white;
+          background-color: #f0c20c;
+        }
 
-      &.status-FAIL {
-        color: white;
-        background-color: #cc1814;
+        &.severity-LOW {
+          color: white;
+          background-color: #096ab0;
+        }
+
+        &.status-PASS {
+          color: white;
+          background-color: #00b09b;
+        }
+
+        &.status-FAIL {
+          color: white;
+          background-color: #cc1814;
+        }
       }
     }
   }
