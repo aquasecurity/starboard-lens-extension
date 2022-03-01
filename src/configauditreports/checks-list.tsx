@@ -33,6 +33,13 @@ const BySeverity = (v1: Check, v2: Check) => {
 
 export class ChecksList extends React.Component<Props> {
 
+    getMessage = (check: Check) => {
+        if (check.message !== undefined && check.message !== "") {
+            return check.message
+        }
+        return check.description
+    }
+
     getTableRow = (uid: string) => {
         const {checks} = this.props;
         const check = checks.find(item => item.checkID == uid);
@@ -49,7 +56,7 @@ export class ChecksList extends React.Component<Props> {
                     <Badge className={"Badge severity-" + check.severity} small label={check.severity}/>
                 </TableCell>
                 <TableCell className="message">
-                    <Badge flat expandable={false} label={check.message} tooltip={check.message}/>
+                    <Badge flat expandable={false} label={this.getMessage(check)} tooltip={this.getMessage(check)}/>
                 </TableCell>
                 <TableCell className="status">
                     <Badge className={"Badge status-" + status} small label={status}/>
