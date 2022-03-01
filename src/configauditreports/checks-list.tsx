@@ -34,8 +34,8 @@ const BySeverity = (v1: Check, v2: Check) => {
 export class ChecksList extends React.Component<Props> {
 
     getMessage = (check: Check) => {
-        if (check.message !== undefined && check.message !== "") {
-            return check.message
+        if (check.messages !== undefined && check.messages.length > 0) {
+            return check.messages.join("\n")
         }
         return check.description
     }
@@ -50,7 +50,8 @@ export class ChecksList extends React.Component<Props> {
         return (
             <TableRow key={check.checkID} nowrap>
                 <TableCell className="checkID">
-                    <Badge flat expandable={false} label={check.checkID} tooltip={check.checkID}/>
+                    <a target="_blank"
+                       href={"https://avd.aquasec.com/misconfig/kubernetes/" + check.checkID.toLowerCase()}>{check.checkID}</a>
                 </TableCell>
                 <TableCell className="severity">
                     <Badge className={"Badge severity-" + check.severity} small label={check.severity}/>
@@ -86,7 +87,7 @@ export class ChecksList extends React.Component<Props> {
                     <TableHead>
                         <TableCell className="checkID">ID</TableCell>
                         <TableCell className="severity">Severity</TableCell>
-                        <TableCell className="message">Message</TableCell>
+                        <TableCell className="messages">Messages</TableCell>
                         <TableCell className="status">Status</TableCell>
                     </TableHead>
                     {

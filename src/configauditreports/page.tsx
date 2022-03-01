@@ -13,9 +13,10 @@ const {
 enum sortBy {
     name = "name",
     namespace = "namespace",
-    pass = "pass",
-    danger = "danger",
-    warning = "warning",
+    critical = "critical",
+    high = "high",
+    medium = "medium",
+    low = "low",
     scanner = "scanner"
 }
 
@@ -28,9 +29,10 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 className="ConfigAuditReports" store={clusterStore}
                 sortingCallbacks={{
                     [sortBy.name]: (report: ClusterConfigAuditReport) => report.getName(),
-                    [sortBy.danger]: (report: ClusterConfigAuditReport) => report.report.summary.dangerCount,
-                    [sortBy.warning]: (report: ClusterConfigAuditReport) => report.report.summary.warningCount,
-                    [sortBy.pass]: (report: ClusterConfigAuditReport) => report.report.summary.passCount,
+                    [sortBy.critical]: (report: ClusterConfigAuditReport) => report.report.summary.criticalCount,
+                    [sortBy.high]: (report: ClusterConfigAuditReport) => report.report.summary.highCount,
+                    [sortBy.medium]: (report: ClusterConfigAuditReport) => report.report.summary.mediumCount,
+                    [sortBy.low]: (report: ClusterConfigAuditReport) => report.report.summary.lowCount,
                     [sortBy.scanner]: (report: ClusterConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
                 }}
                 searchFilters={[
@@ -39,17 +41,19 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 renderHeaderTitle="ClusterConfigAuditReports"
                 renderTableHeader={[
                     {title: "Name", sortBy: sortBy.name},
-                    {title: "Danger", sortBy: sortBy.danger},
-                    {title: "Warning", sortBy: sortBy.warning},
-                    {title: "Pass", sortBy: sortBy.pass},
+                    {title: "Critical", sortBy: sortBy.critical},
+                    {title: "High", sortBy: sortBy.high},
+                    {title: "Medium", sortBy: sortBy.medium},
+                    {title: "Low", sortBy: sortBy.low},
                     {title: "Scanner", sortBy: sortBy.scanner},
                 ]}
                 renderTableContents={(report: ClusterConfigAuditReport) => [
                     <Badge flat expandable={false} key="name" label={report.getName()}
                            tooltip={report.getName()}/>,
-                    report.report.summary.dangerCount,
-                    report.report.summary.warningCount,
-                    report.report.summary.passCount,
+                    report.report.summary.criticalCount,
+                    report.report.summary.highCount,
+                    report.report.summary.mediumCount,
+                    report.report.summary.lowCount,
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
@@ -67,9 +71,10 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                 sortingCallbacks={{
                     [sortBy.name]: (report: ConfigAuditReport) => report.getName(),
                     [sortBy.namespace]: (report: ConfigAuditReport) => report.metadata.namespace,
-                    [sortBy.danger]: (report: ConfigAuditReport) => report.report.summary.dangerCount,
-                    [sortBy.warning]: (report: ConfigAuditReport) => report.report.summary.warningCount,
-                    [sortBy.pass]: (report: ConfigAuditReport) => report.report.summary.passCount,
+                    [sortBy.critical]: (report: ConfigAuditReport) => report.report.summary.criticalCount,
+                    [sortBy.high]: (report: ConfigAuditReport) => report.report.summary.highCount,
+                    [sortBy.medium]: (report: ConfigAuditReport) => report.report.summary.mediumCount,
+                    [sortBy.low]: (report: ConfigAuditReport) => report.report.summary.lowCount,
                     [sortBy.scanner]: (report: ClusterConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
                 }}
                 searchFilters={[
@@ -79,9 +84,10 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                 renderTableHeader={[
                     {title: "Name", sortBy: sortBy.name},
                     {title: "Namespace", sortBy: sortBy.namespace},
-                    {title: "Danger", sortBy: sortBy.danger},
-                    {title: "Warning", sortBy: sortBy.warning},
-                    {title: "Pass", sortBy: sortBy.pass},
+                    {title: "Critical", sortBy: sortBy.critical},
+                    {title: "High", sortBy: sortBy.high},
+                    {title: "Medium", sortBy: sortBy.medium},
+                    {title: "Low", sortBy: sortBy.low},
                     {title: "Scanner", sortBy: sortBy.scanner},
 
                 ]}
@@ -89,9 +95,10 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                     <Badge flat expandable={false} key="name" label={report.getName()}
                            tooltip={report.getName()}/>,
                     report.metadata.namespace,
-                    report.report.summary.dangerCount,
-                    report.report.summary.warningCount,
-                    report.report.summary.passCount,
+                    report.report.summary.criticalCount,
+                    report.report.summary.highCount,
+                    report.report.summary.mediumCount,
+                    report.report.summary.lowCount,
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />

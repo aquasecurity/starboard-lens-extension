@@ -249,7 +249,7 @@ export default class StarboardExtension extends Renderer.LensExtension {
                 Details: (props: KubeHunterReportDetailsProps) => <KubeHunterReportDetails
                     showObjectMeta {...props} />
             }
-        }
+        },
     ]
 
 }

@@ -2,19 +2,24 @@
   .summary {
     .Badge {
 
-      &.theme-danger {
+      &.severity-critical {
         color: white;
         background-color: #cc1814;
       }
 
-      &.theme-warning {
+      &.severity-high {
         color: white;
         background-color: #ffa500;
       }
 
-      &.theme-pass {
+      &.severity-medium {
         color: white;
-        background-color: #00b09b;
+        background-color: #f0c20c;
+      }
+
+      &.severity-low {
+        color: white;
+        background-color: #096ab0;
       }
     }
   }
