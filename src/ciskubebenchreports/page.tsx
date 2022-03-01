@@ -31,20 +31,19 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
                 renderHeaderTitle="CISKubeBenchReports"
                 renderTableHeader={[
                     {title: "Name", className: "name", sortBy: sortBy.name},
-                    {title: "Scanner", className: "scanner"},
                     {title: "Fail", className: "fail", sortBy: sortBy.fail},
                     {title: "Warn", className: "pass", sortBy: sortBy.warn},
                     {title: "Info", className: "xinfo", sortBy: sortBy.info},
                     {title: "Pass", className: "pass", sortBy: sortBy.pass},
-
+                    {title: "Scanner", className: "scanner"},
                 ]}
                 renderTableContents={(report: CISKubeBenchReport) => [
                     report.getName(),
-                    report.report.scanner.name + " " + report.report.scanner.version,
                     report.report.summary.failCount,
                     report.report.summary.warnCount,
                     report.report.summary.infoCount,
                     report.report.summary.passCount,
+                    report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
         )
