@@ -9,7 +9,9 @@ export type Summary = {
 
 export class Check {
     checkID: string;
-    message: string;
+    title: string;
+    description: string;
+    message?: string;
     success: boolean;
     severity: string;
     category: string;
