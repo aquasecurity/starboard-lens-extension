@@ -33,15 +33,18 @@ export class ClusterConfigAuditReportDetails extends React.Component<ClusterConf
                         object={report}
                         hideFields={["uid", "resourceVersion", "selfLink"]}/>}
                 <DrawerItem name="Summary" className="summary" labelsOnly>
-                    <Badge className="Badge theme-danger"
-                           label={summary.dangerCount}
-                           tooltip="Danger"/>
-                    <Badge className="Badge theme-warning"
-                           label={summary.warningCount}
-                           tooltip="Warning"/>
-                    <Badge className="Badge theme-pass"
-                           label={summary.passCount}
-                           tooltip="Pass"/>
+                    <Badge className="Badge severity-critical"
+                           label={summary.criticalCount}
+                           tooltip="Critical"/>
+                    <Badge className="Badge severity-high"
+                           label={summary.highCount}
+                           tooltip="High"/>
+                    <Badge className="Badge severity-medium"
+                           label={summary.mediumCount}
+                           tooltip="Medium"/>
+                    <Badge className="Badge severity-low"
+                           label={summary.lowCount}
+                           tooltip="Low"/>
                 </DrawerItem>
                 <ChecksList checks={checks}/>
             </div>
@@ -77,15 +80,18 @@ export class ConfigAuditReportDetails extends React.Component<ConfigAuditReportD
                         object={report}
                         hideFields={["uid", "resourceVersion", "selfLink"]}/>}
                 <DrawerItem name="Summary" className="summary" labelsOnly>
-                    <Badge className="Badge theme-danger"
-                           label={summary.dangerCount}
-                           tooltip="Danger"/>
-                    <Badge className="Badge theme-warning"
-                           label={summary.warningCount}
-                           tooltip="Warning"/>
-                    <Badge className="Badge theme-pass"
-                           label={summary.passCount}
-                           tooltip="Pass"/>
+                    <Badge className="Badge severity-critical"
+                           label={summary.criticalCount}
+                           tooltip="Critical"/>
+                    <Badge className="Badge severity-high"
+                           label={summary.highCount}
+                           tooltip="High"/>
+                    <Badge className="Badge severity-medium"
+                           label={summary.mediumCount}
+                           tooltip="Medium"/>
+                    <Badge className="Badge severity-low"
+                           label={summary.lowCount}
+                           tooltip="Low"/>
                 </DrawerItem>
                 <ChecksList checks={checks}/>
             </div>
