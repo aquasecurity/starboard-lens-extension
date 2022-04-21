@@ -1,0 +1,24 @@
+.CISKubeBenchReportsList {
+
+  .Badge {
+    &.theme-fail {
+      color: white;
+      background-color: #cc1814;
+    }
+
+    &.theme-warn {
+      color: white;
+      background-color: #ffa500;
+    }
+
+    &.theme-info {
+      color: white;
+      background-color: #515456;
+    }
+
+    &.theme-pass {
+      color: white;
+      background-color: #00b09b;
+    }
+  }
+}

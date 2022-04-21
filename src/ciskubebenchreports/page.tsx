@@ -1,7 +1,15 @@
+import "./page.scss"
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {store} from "./store";
 import {CISKubeBenchReport} from "./types";
+
+const {
+    Component: {
+        KubeObjectListLayout,
+        Badge
+    }
+} = Renderer;
 
 enum sortBy {
     name = "name",
@@ -15,7 +23,7 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
 
     render() {
         return (
-            <Renderer.Component.KubeObjectListLayout
+            <KubeObjectListLayout
                 tableId="kubeBenchReportsTable"
                 className="CISKubeBenchReportsList" store={store}
                 sortingCallbacks={{
@@ -39,13 +47,25 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
                 ]}
                 renderTableContents={(report: CISKubeBenchReport) => [
                     report.getName(),
-                    report.report.summary.failCount,
-                    report.report.summary.warnCount,
-                    report.report.summary.infoCount,
-                    report.report.summary.passCount,
+                    renderResult("fail", report.report.summary.failCount),
+                    renderResult("warn", report.report.summary.warnCount),
+                    renderResult("info", report.report.summary.infoCount),
+                    renderResult("pass", report.report.summary.passCount),
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
         )
     }
+}
+
+function renderResult(result: string, count: number) {
+  if (count > 0) {
+    return (
+        <Badge className={"Badge theme-" + result} small key="result" label={count}/>
+    )
+  } else {
+    return (
+        <Badge flat small key="result" label={count}/>
+    )
+  } 
 }
