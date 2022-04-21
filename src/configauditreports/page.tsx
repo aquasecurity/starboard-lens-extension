@@ -1,3 +1,4 @@
+import "./page.scss"
 import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {clusterStore, store} from "./store";
@@ -95,13 +96,25 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                     <Badge flat expandable={false} key="name" label={report.getName()}
                            tooltip={report.getName()}/>,
                     report.metadata.namespace,
-                    report.report.summary.criticalCount,
-                    report.report.summary.highCount,
-                    report.report.summary.mediumCount,
-                    report.report.summary.lowCount,
+                    renderSeverity("CRITICAL", report.report.summary.criticalCount),
+                    renderSeverity("HIGH", report.report.summary.highCount),
+                    renderSeverity("MEDIUM", report.report.summary.mediumCount),
+                    renderSeverity("LOW", report.report.summary.lowCount),
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
         )
     }
+}
+
+function renderSeverity(severity: string, count: number) {
+  if (count > 0) {
+    return (
+        <Badge className={"Badge severity-" + severity} small key="severity" label={count}/>
+    )
+  } else {
+    return (
+        <Badge flat small key="severity" label={count}/>
+    )
+  } 
 }
