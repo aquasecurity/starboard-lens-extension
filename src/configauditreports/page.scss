@@ -1,6 +1,30 @@
 .ConfigAuditReports {
 
+  .Table {
+    .TableCell {
+      &.name {
+        text-align: left;
+        flex-grow: 0.45;
+      }
+      &.namespace {
+        text-align: left;
+        flex-grow: 0.15;
+      }
+      &.results {
+        text-align: left;
+        flex-grow: 0.25;
+      }
+      &.scanner {
+        text-align: left;
+        flex-grow: 0.15;
+      }
+    }
+  }
+
   .Badge {
+    margin-left: 4px;
+    margin-right: 4px;
+
     &.severity-CRITICAL {
       color: white;
       background-color: #cc1814;
