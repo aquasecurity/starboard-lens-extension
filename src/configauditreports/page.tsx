@@ -118,7 +118,7 @@ function renderSeverity(severity: string, count: number) {
         )
     } else {
         return (
-            <Badge key="severity" label={count}/>
+            <Badge className="Badge" key="severity" label={count}/>
         )
     }
 }
