@@ -65,7 +65,7 @@ function renderResult(result: string, count: number) {
     )
   } else {
     return (
-        <Badge flat small key="result" label={count}/>
+        <Badge small key="result" label={count}/>
     )
   } 
 }
