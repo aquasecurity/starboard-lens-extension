@@ -1,6 +1,26 @@
 .CISKubeBenchReportsList {
 
+  .Table {
+    .TableCell {
+      &.name {
+        text-align: left;
+        flex-grow: 0.50;
+      }
+      &.results {
+        text-align: left;
+        flex-grow: 0.25;
+      }
+      &.scanner {
+        text-align: left;
+        flex-grow: 0.25;
+      }
+    }
+  }
+
   .Badge {
+    margin-left: 4px;
+    margin-right: 4px;
+
     &.theme-fail {
       color: white;
       background-color: #cc1814;

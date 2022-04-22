@@ -13,10 +13,7 @@ const {
 
 enum sortBy {
     name = "name",
-    fail = "fail",
-    info = "info",
-    pass = "pass",
-    warn = "warn",
+    results = "results",
 }
 
 export class CISKubeBenchReportsPage extends React.Component<{ extension: Renderer.LensExtension }> {
@@ -28,10 +25,12 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
                 className="CISKubeBenchReportsList" store={store}
                 sortingCallbacks={{
                     [sortBy.name]: (report: CISKubeBenchReport) => report.getName(),
-                    [sortBy.fail]: (report: CISKubeBenchReport) => report.report.summary.failCount,
-                    [sortBy.info]: (report: CISKubeBenchReport) => report.report.summary.infoCount,
-                    [sortBy.pass]: (report: CISKubeBenchReport) => report.report.summary.passCount,
-                    [sortBy.warn]: (report: CISKubeBenchReport) => report.report.summary.warnCount,
+                    [sortBy.results]: (report: CISKubeBenchReport) => [
+                        report.report.summary.failCount,
+                        report.report.summary.infoCount,
+                        report.report.summary.passCount,
+                        report.report.summary.warnCount,
+                    ]
                 }}
                 searchFilters={[
                     (report: CISKubeBenchReport) => report.getSearchFields()
@@ -39,18 +38,17 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
                 renderHeaderTitle="CISKubeBenchReports"
                 renderTableHeader={[
                     {title: "Name", className: "name", sortBy: sortBy.name},
-                    {title: "Fail", className: "fail", sortBy: sortBy.fail},
-                    {title: "Warn", className: "pass", sortBy: sortBy.warn},
-                    {title: "Info", className: "xinfo", sortBy: sortBy.info},
-                    {title: "Pass", className: "pass", sortBy: sortBy.pass},
+                    {title: "Results", className: "results", sortBy: sortBy.results},
                     {title: "Scanner", className: "scanner"},
                 ]}
                 renderTableContents={(report: CISKubeBenchReport) => [
                     report.getName(),
-                    renderResult("fail", report.report.summary.failCount),
-                    renderResult("warn", report.report.summary.warnCount),
-                    renderResult("info", report.report.summary.infoCount),
-                    renderResult("pass", report.report.summary.passCount),
+                    [
+                        renderResult("fail", report.report.summary.failCount),
+                        renderResult("warn", report.report.summary.warnCount),
+                        renderResult("info", report.report.summary.infoCount),
+                        renderResult("pass", report.report.summary.passCount),
+                    ],
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
@@ -59,13 +57,13 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
 }
 
 function renderResult(result: string, count: number) {
-  if (count > 0) {
-    return (
-        <Badge className={"Badge theme-" + result} small key="result" label={count}/>
-    )
-  } else {
-    return (
-        <Badge small key="result" label={count}/>
-    )
-  } 
+    if (count > 0) {
+        return (
+            <Badge className={"Badge theme-" + result} key="result" label={count} tooltip={result + ": " + count}/>
+        )
+    } else {
+        return (
+            <Badge key="result" label={count}/>
+        )
+    }
 }
