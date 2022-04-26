@@ -104,10 +104,8 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
 }
 
 function renderName(name: string) {
-  // drop replicaset/daemonset/statefulset from displayed name; keep in tooltip
-  const shortName = name.substring(name.indexOf('-')+1)
   return (
-      <Badge flat expandable={false} key="name" label={shortName} tooltip={name}/>
+      <Badge flat expandable={false} key="name" label={name} tooltip={name}/>
   )
 }
 
