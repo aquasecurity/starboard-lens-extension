@@ -14,7 +14,7 @@ const {
 enum sortBy {
     name = "name",
     namespace = "namespace",
-    results = "results",
+    summary = "summary",
     scanner = "scanner"
 }
 
@@ -27,7 +27,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 className="ConfigAuditReports" store={clusterStore}
                 sortingCallbacks={{
                     [sortBy.name]: (report: ClusterConfigAuditReport) => report.getName(),
-                    [sortBy.results]: (report: ClusterConfigAuditReport) => [
+                    [sortBy.summary]: (report: ClusterConfigAuditReport) => [
                         report.report.summary.criticalCount,
                         report.report.summary.highCount,
                         report.report.summary.mediumCount,
@@ -41,7 +41,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 renderHeaderTitle="ClusterConfigAuditReports"
                 renderTableHeader={[
                     {title: "Name", sortBy: sortBy.name},
-                    {title: "Results", className: "results", sortBy: sortBy.results},
+                    {title: "Summary", className: "summary", sortBy: sortBy.summary},
                     {title: "Scanner", sortBy: sortBy.scanner},
                 ]}
                 renderTableContents={(report: ClusterConfigAuditReport) => [
@@ -69,7 +69,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                 sortingCallbacks={{
                     [sortBy.name]: (report: ConfigAuditReport) => report.getName(),
                     [sortBy.namespace]: (report: ConfigAuditReport) => report.metadata.namespace,
-                    [sortBy.results]: (report: ConfigAuditReport) => [
+                    [sortBy.summary]: (report: ConfigAuditReport) => [
                         report.report.summary.criticalCount,
                         report.report.summary.highCount,
                         report.report.summary.mediumCount,
@@ -84,7 +84,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                 renderTableHeader={[
                     {title: "Name", className: "name", sortBy: sortBy.name},
                     {title: "Namespace", className: "namespace", sortBy: sortBy.namespace},
-                    {title: "Results", className: "results", sortBy: sortBy.results},
+                    {title: "Summary", className: "summary", sortBy: sortBy.summary},
                     {title: "Scanner", className: "scanner", sortBy: sortBy.scanner},
                 ]}
                 renderTableContents={(report: ConfigAuditReport) => [

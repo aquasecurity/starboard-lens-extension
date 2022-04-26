@@ -13,7 +13,7 @@ const {
 
 enum sortBy {
     name = "name",
-    results = "results",
+    summary = "summary",
 }
 
 export class CISKubeBenchReportsPage extends React.Component<{ extension: Renderer.LensExtension }> {
@@ -25,7 +25,7 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
                 className="CISKubeBenchReportsList" store={store}
                 sortingCallbacks={{
                     [sortBy.name]: (report: CISKubeBenchReport) => report.getName(),
-                    [sortBy.results]: (report: CISKubeBenchReport) => [
+                    [sortBy.summary]: (report: CISKubeBenchReport) => [
                         report.report.summary.failCount,
                         report.report.summary.infoCount,
                         report.report.summary.passCount,
@@ -38,7 +38,7 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
                 renderHeaderTitle="CISKubeBenchReports"
                 renderTableHeader={[
                     {title: "Name", className: "name", sortBy: sortBy.name},
-                    {title: "Results", className: "results", sortBy: sortBy.results},
+                    {title: "Summary", className: "summary", sortBy: sortBy.summary},
                     {title: "Scanner", className: "scanner"},
                 ]}
                 renderTableContents={(report: CISKubeBenchReport) => [
