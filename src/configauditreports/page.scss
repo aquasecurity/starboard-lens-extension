@@ -8,11 +8,11 @@
       }
       &.namespace {
         text-align: left;
-        flex-grow: 0.15;
+        flex-grow: 0.1;
       }
       &.summary {
         text-align: left;
-        flex-grow: 0.25;
+        flex-grow: 0.3;
       }
       &.scanner {
         text-align: left;
@@ -24,6 +24,8 @@
   .Badge {
     margin-left: 4px;
     margin-right: 4px;
+    width: 3em;
+    text-align: right;
 
     &.severity-CRITICAL {
       color: white;
