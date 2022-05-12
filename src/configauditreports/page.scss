@@ -2,20 +2,19 @@
 
   .Table {
     .TableCell {
+      display: flex;
+      align-items: center;
+      text-align: left;
       &.name {
-        text-align: left;
         flex-grow: 0.45;
       }
       &.namespace {
-        text-align: left;
         flex-grow: 0.1;
       }
       &.summary {
-        text-align: left;
         flex-grow: 0.3;
       }
       &.scanner {
-        text-align: left;
         flex-grow: 0.15;
       }
     }

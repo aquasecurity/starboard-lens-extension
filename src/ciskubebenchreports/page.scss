@@ -2,16 +2,16 @@
 
   .Table {
     .TableCell {
+      display: flex;
+      align-items: center;
+      text-align: left;
       &.name {
-        text-align: left;
         flex-grow: 0.45;
       }
       &.summary {
-        text-align: left;
         flex-grow: 0.4;
       }
       &.scanner {
-        text-align: left;
         flex-grow: 0.15;
       }
     }

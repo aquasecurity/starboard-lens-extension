@@ -59,11 +59,11 @@ export class CISKubeBenchReportsPage extends React.Component<{ extension: Render
 function renderResult(result: string, count: number) {
     if (count > 0) {
         return (
-            <Badge className={"Badge theme-" + result} key="result" label={count} tooltip={result + ": " + count}/>
+            <Badge className={"Badge theme-" + result} key="result" small label={count} tooltip={result + ": " + count}/>
         )
     } else {
         return (
-            <Badge className="Badge" key="result" label={count}/>
+            <Badge className="Badge" key="result" small label={count}/>
         )
     }
 }

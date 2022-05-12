@@ -112,11 +112,11 @@ function renderName(name: string) {
 function renderSeverity(severity: string, count: number) {
     if (count > 0) {
         return (
-            <Badge className={"Badge severity-" + severity} key="severity" label={count} tooltip={severity + ": " + count}/>
+            <Badge className={"Badge severity-" + severity} key="severity" small label={count} tooltip={severity + ": " + count}/>
         )
     } else {
         return (
-            <Badge className="Badge" key="severity" label={count}/>
+            <Badge className="Badge" key="severity" small label={count}/>
         )
     }
 }
