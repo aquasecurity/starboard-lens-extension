@@ -14,10 +14,7 @@ const {
 enum sortBy {
     name = "name",
     namespace = "namespace",
-    critical = "critical",
-    high = "high",
-    medium = "medium",
-    low = "low",
+    summary = "summary",
     scanner = "scanner"
 }
 
@@ -30,10 +27,12 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 className="ConfigAuditReports" store={clusterStore}
                 sortingCallbacks={{
                     [sortBy.name]: (report: ClusterConfigAuditReport) => report.getName(),
-                    [sortBy.critical]: (report: ClusterConfigAuditReport) => report.report.summary.criticalCount,
-                    [sortBy.high]: (report: ClusterConfigAuditReport) => report.report.summary.highCount,
-                    [sortBy.medium]: (report: ClusterConfigAuditReport) => report.report.summary.mediumCount,
-                    [sortBy.low]: (report: ClusterConfigAuditReport) => report.report.summary.lowCount,
+                    [sortBy.summary]: (report: ClusterConfigAuditReport) => [
+                        report.report.summary.criticalCount,
+                        report.report.summary.highCount,
+                        report.report.summary.mediumCount,
+                        report.report.summary.lowCount
+                    ],
                     [sortBy.scanner]: (report: ClusterConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
                 }}
                 searchFilters={[
@@ -42,19 +41,17 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                 renderHeaderTitle="ClusterConfigAuditReports"
                 renderTableHeader={[
                     {title: "Name", sortBy: sortBy.name},
-                    {title: "Critical", sortBy: sortBy.critical},
-                    {title: "High", sortBy: sortBy.high},
-                    {title: "Medium", sortBy: sortBy.medium},
-                    {title: "Low", sortBy: sortBy.low},
+                    {title: "Summary", className: "summary", sortBy: sortBy.summary},
                     {title: "Scanner", sortBy: sortBy.scanner},
                 ]}
                 renderTableContents={(report: ClusterConfigAuditReport) => [
-                    <Badge flat expandable={false} key="name" label={report.getName()}
-                           tooltip={report.getName()}/>,
-                    report.report.summary.criticalCount,
-                    report.report.summary.highCount,
-                    report.report.summary.mediumCount,
-                    report.report.summary.lowCount,
+                    renderName(report.getName()),
+                    [
+                        renderSeverity("CRITICAL", report.report.summary.criticalCount),
+                        renderSeverity("HIGH", report.report.summary.highCount),
+                        renderSeverity("MEDIUM", report.report.summary.mediumCount),
+                        renderSeverity("LOW", report.report.summary.lowCount),
+                    ],
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
@@ -72,34 +69,33 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                 sortingCallbacks={{
                     [sortBy.name]: (report: ConfigAuditReport) => report.getName(),
                     [sortBy.namespace]: (report: ConfigAuditReport) => report.metadata.namespace,
-                    [sortBy.critical]: (report: ConfigAuditReport) => report.report.summary.criticalCount,
-                    [sortBy.high]: (report: ConfigAuditReport) => report.report.summary.highCount,
-                    [sortBy.medium]: (report: ConfigAuditReport) => report.report.summary.mediumCount,
-                    [sortBy.low]: (report: ConfigAuditReport) => report.report.summary.lowCount,
-                    [sortBy.scanner]: (report: ClusterConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
+                    [sortBy.summary]: (report: ConfigAuditReport) => [
+                        report.report.summary.criticalCount,
+                        report.report.summary.highCount,
+                        report.report.summary.mediumCount,
+                        report.report.summary.lowCount
+                    ],
+                    [sortBy.scanner]: (report: ConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
                 }}
                 searchFilters={[
                     (report: ConfigAuditReport) => report.getSearchFields()
                 ]}
                 renderHeaderTitle="ConfigAuditReports"
                 renderTableHeader={[
-                    {title: "Name", sortBy: sortBy.name},
-                    {title: "Namespace", sortBy: sortBy.namespace},
-                    {title: "Critical", sortBy: sortBy.critical},
-                    {title: "High", sortBy: sortBy.high},
-                    {title: "Medium", sortBy: sortBy.medium},
-                    {title: "Low", sortBy: sortBy.low},
-                    {title: "Scanner", sortBy: sortBy.scanner},
-
+                    {title: "Name", className: "name", sortBy: sortBy.name},
+                    {title: "Namespace", className: "namespace", sortBy: sortBy.namespace},
+                    {title: "Summary", className: "summary", sortBy: sortBy.summary},
+                    {title: "Scanner", className: "scanner", sortBy: sortBy.scanner},
                 ]}
                 renderTableContents={(report: ConfigAuditReport) => [
-                    <Badge flat expandable={false} key="name" label={report.getName()}
-                           tooltip={report.getName()}/>,
+                    renderName(report.getName()),
                     report.metadata.namespace,
-                    renderSeverity("CRITICAL", report.report.summary.criticalCount),
-                    renderSeverity("HIGH", report.report.summary.highCount),
-                    renderSeverity("MEDIUM", report.report.summary.mediumCount),
-                    renderSeverity("LOW", report.report.summary.lowCount),
+                    [
+                        renderSeverity("CRITICAL", report.report.summary.criticalCount),
+                        renderSeverity("HIGH", report.report.summary.highCount),
+                        renderSeverity("MEDIUM", report.report.summary.mediumCount),
+                        renderSeverity("LOW", report.report.summary.lowCount),
+                    ],
                     report.report.scanner.name + " " + report.report.scanner.version,
                 ]}
             />
@@ -107,14 +103,20 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
     }
 }
 
+function renderName(name: string) {
+  return (
+      <Badge flat expandable={false} key="name" label={name} tooltip={name}/>
+  )
+}
+
 function renderSeverity(severity: string, count: number) {
-  if (count > 0) {
-    return (
-        <Badge className={"Badge severity-" + severity} small key="severity" label={count}/>
-    )
-  } else {
-    return (
-        <Badge small key="severity" label={count}/>
-    )
-  } 
+    if (count > 0) {
+        return (
+            <Badge className={"Badge severity-" + severity} key="severity" small label={count} tooltip={severity + ": " + count}/>
+        )
+    } else {
+        return (
+            <Badge className="Badge" key="severity" small label={count}/>
+        )
+    }
 }
