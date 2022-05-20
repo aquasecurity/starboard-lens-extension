@@ -36,6 +36,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                         report.report.summary.lowCount
                     ],
                     [sortBy.scanner]: (report: ClusterConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
+                    [sortBy.age]: (report: ConfigAuditReport) => report.metadata.creationTimestamp,
                 }}
                 searchFilters={[
                     (report: ClusterConfigAuditReport) => report.getSearchFields()
@@ -45,6 +46,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                     {title: "Name", sortBy: sortBy.name},
                     {title: "Summary", className: "summary", sortBy: sortBy.summary},
                     {title: "Scanner", sortBy: sortBy.scanner},
+                    {title: "Age", className: "age", sortBy: sortBy.age},
                 ]}
                 renderTableContents={(report: ClusterConfigAuditReport) => [
                     renderName(report.getName()),
@@ -55,6 +57,7 @@ export class ClusterConfigAuditReportPage extends React.Component<{ extension: R
                         renderSeverity("LOW", report.report.summary.lowCount),
                     ],
                     report.report.scanner.name + " " + report.report.scanner.version,
+                    renderAge(report.metadata.creationTimestamp),
                 ]}
             />
         )
