@@ -9,13 +9,16 @@
         flex-grow: 0.45;
       }
       &.namespace {
-        flex-grow: 0.1;
+        flex-grow: 0.075;
       }
       &.summary {
         flex-grow: 0.3;
       }
       &.scanner {
-        flex-grow: 0.15;
+        flex-grow: 0.125;
+      }
+      &.age {
+        flex-grow: 0.05;
       }
     }
   }

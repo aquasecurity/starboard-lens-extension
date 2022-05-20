@@ -3,6 +3,7 @@ import {Renderer} from "@k8slens/extensions";
 import React from "react";
 import {clusterStore, store} from "./store";
 import {ClusterConfigAuditReport, ConfigAuditReport} from "./types";
+import formatDuration from "../utils/formatDuration";
 
 const {
     Component: {
@@ -15,7 +16,8 @@ enum sortBy {
     name = "name",
     namespace = "namespace",
     summary = "summary",
-    scanner = "scanner"
+    scanner = "scanner",
+    age = "age",
 }
 
 export class ClusterConfigAuditReportPage extends React.Component<{ extension: Renderer.LensExtension }> {
@@ -76,6 +78,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                         report.report.summary.lowCount
                     ],
                     [sortBy.scanner]: (report: ConfigAuditReport) => report.report.scanner.name + " " + report.report.scanner.version,
+                    [sortBy.age]: (report: ConfigAuditReport) => report.metadata.creationTimestamp,
                 }}
                 searchFilters={[
                     (report: ConfigAuditReport) => report.getSearchFields()
@@ -86,6 +89,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                     {title: "Namespace", className: "namespace", sortBy: sortBy.namespace},
                     {title: "Summary", className: "summary", sortBy: sortBy.summary},
                     {title: "Scanner", className: "scanner", sortBy: sortBy.scanner},
+                    {title: "Age", className: "age", sortBy: sortBy.age},
                 ]}
                 renderTableContents={(report: ConfigAuditReport) => [
                     renderName(report.getName()),
@@ -97,6 +101,7 @@ export class ConfigAuditReportPage extends React.Component<{ extension: Renderer
                         renderSeverity("LOW", report.report.summary.lowCount),
                     ],
                     report.report.scanner.name + " " + report.report.scanner.version,
+                    renderAge(report.metadata.creationTimestamp),
                 ]}
             />
         )
@@ -119,4 +124,13 @@ function renderSeverity(severity: string, count: number) {
             <Badge className="Badge" key="severity" small label={count}/>
         )
     }
+}
+
+function renderAge(timestamp: string) {
+    const creationTimestamp = new Date(timestamp).getTime();
+    return (
+        <Badge flat expandable={false} key="age"
+            label={formatDuration(Date.now() - creationTimestamp, true)}
+            tooltip={timestamp} />
+    )
 }
